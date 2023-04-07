@@ -1,1 +1,1 @@
-# bonus-wallet-sdk
+# bonus-wallet-js-sdk
