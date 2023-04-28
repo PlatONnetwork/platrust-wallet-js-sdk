@@ -1,79 +1,7 @@
-<h1 align="center">
-   <b>
-        bonus-wallet-js-sdk
-    </b>
-</h1>
-
-<p align="center">The interaction library for BonusWallet</p>
-
-<p align="center">
-    <a href="https://github.com/study-core/bonus-wallet-contracts/"><b>Compatible Contracts</b></a> •
-    <a href="docs/modules.md"><b>Documentation</b></a>
-</p>
-
-
-## Table of Contents
-
-  - [Features](#features)
-
-  - [Installing](#installing)
-    
-  - [Example](#example)
-
-  - [License](#license)
-
-    
-
-## Features
-
-- All-In-One
-
-- UserOperation can be built with a single function
-
-- Built-in Bundler module
-
-- Built-in common operations, such as ERC20 ERC721 ERC1155 (e.g. you can create a transfer UserOperation with one function)
-
-- Auto update preVerificationGas (lower deposit requirements for user)
-
-- ⚠️ Note: current version will refactor the code in the future and cannot guarantee compatibility
-
-  
-
-## Installing
-
-Using npm:
-
-```bash
-$ npm install git+https://github.com/study-core/bonus-wallet-js-sdk.git#v0.1.0
-```
-
-Using yarn:
-
-```bash
-$ yarn add git+https://github.com/study-core/bonus-wallet-js-sdk.git#v0.1.0
-```
-
-Using pnpm:
-
-```bash
-$ pnpm add git+https://github.com/study-core/bonus-wallet-js-sdk.git#v0.1.0
-```
-
-Once the package is installed, you can import the library using `import` approach:
-
-```bash
-import { ApproveToken, ParsedTransaction, BonusWalletLib, UserOperation } from 'bonus-wallet-js-sdk';
-```
-
-
-
-## Example
-
-```typescript
 import { ethers } from "ethers";
-import { Accounts } from "web3-eth-accounts";
-import { UserOpReceipt, BaseWalletLib, UserOperation, packSignatureHash, signMessage, encodeSignature } from 'bonus-wallet-js-sdk';
+import { SignatureMode } from "./utils/signatures";
+import { AddressZero } from "./config/constants";
+import { BonusWalletLib, packSignatureHash, signMessage, encodeSignature, recoverAddress } from './index';
 
 async function main() {
     const pks = ['0xa5748918ff73de2e3f6cde786a1567640349eefff2503de82b0bfa4d41d55101']
@@ -103,9 +31,9 @@ async function main() {
         walletFactory  // <address> wallet Factory Address
     );
     console.log('initializer: ', initializer)
-    // console.log("wallet: ", walletAddress);
-    // console.log("factory: ", walletFactory);
-    // console.log("wallet logic: ", walletLogic);
+    console.log("wallet: ", walletAddress);
+    console.log("factory: ", walletFactory);
+    console.log("wallet logic: ", walletLogic);
     const initcode = bonusWalletLib.getInitCode(walletFactory, walletLogic, initializer, salt)
     console.log("init code: ", initcode)
     const activateOp = bonusWalletLib.activateWalletOp(
@@ -114,8 +42,8 @@ async function main() {
         undefined,   // <bytes> paymasterAndData
         salt,     // <string> salt (Hex string)
         walletFactory,  // <address> Wallet factory Contract Address
-        100,      // <number> maxFeePerGas 100Gwei
-        1000,     // <number> maxPriorityFeePerGas 10Gwei
+        100,// <number> maxFeePerGas 100Gwei
+        1000,// <number> maxPriorityFeePerGas 10Gwei
         5000000,
         500000,
         50000
@@ -126,17 +54,20 @@ async function main() {
     //     2206132,                   // <uint32> chainId
     // );
     const userOpHash = await activateOp.getUserOpHashFromContract(
-        relayerManagerAddr,  // <address> EntryPoint Contract Address
+        "0x32De9126ee5bc74039ADCCe66bc00d13C6651028",  // <address> EntryPoint Contract Address
         new ethers.providers.JsonRpcProvider( "https://devnet2openapi.platon.network/rpc"),  // ethers.providers
     );
     console.log("userOpHash: ", userOpHash);
-    
-    const signedHash = packSignatureHash(userOpHash, SignatureMode.owner, 0, 0);
+    const signedHash = packSignatureHash("0x18ce4fd4521d9ae133abbd6243d2ee7260a5c106876de58cbf2343564b68a228", SignatureMode.owner, 0, 0);
 
     console.log("signedMsg: ", signedHash);
+    // (uint8 v, bytes32 r, bytes32 s) = vm.sign(privateKey, signedMsg);
+    // bytes memory sig = abi.encodePacked(r, s, v);
+    // console2.log("sig: ", vm.toString(sig));
+    // userOp.signature = Utils.encodeSignature(0, SignatureMode.owner, 0, 0, address(0), sig);
     const sig = signMessage(signedHash, pks[0])
     console.log('sig: ', sig)
-    const pk = recoverAddress(signedHash, sig)
+    const pk = recoverAddress(signedHash, "0xf5731ae0c243ab09b0c47edb1bffcbc72559274458ccdf6c14abbfb102e0c9800bd6948d378529ec783c0f3c9a99f6a21e1b5b85a5f6931401983bd7b59668091c")
     console.log('pk: ', pk)
     // let sigs = ''
     // for (var i = 0; i < 2; i++) {
@@ -148,35 +79,31 @@ async function main() {
     // }
     activateOp.signature = encodeSignature(SignatureMode.owner, sig, 0, 0);
     console.log("signature: ", activateOp.signature);
-    
-    const bundler = new BaseWalletLib.Bundler(
-        '0x0',  // <address> EntryPoint Contract Address
-        new ethers.providers.JsonRpcProvider( "https://devnet2openapi.platon.network/rpc"),  // ethers.providers
-    );
 
-    const validation = await bundler.simulateValidation(activateOp);
-    if (validation.status !== 0) {
-        throw new Error(`error code:${validation.status}`);
-    }
-
-    const bundlerEvent = bundler.sendUserOperation(activateOp);
-    bundlerEvent.on('error', (err: any) => {
-        console.log(err);
-    });
-    bundlerEvent.on('send', (userOpHash: string) => {
-        console.log('send: ' + userOpHash);
-    });
-    bundlerEvent.on('receipt', (receipt: IUserOpReceipt) => {
-        console.log('receipt: ' + JSON.stringify(receipt));
-    });
-    bundlerEvent.on('timeout', () => {
-        console.log('timeout');
-    });
+    // const bundler = new bonusWalletLib.Bundler(
+    //     '0x0',  // <address> EntryPoint Contract Address
+    //     new ethers.providers.JsonRpcProvider('<RPC Provider>'),
+    //     ''
+    // );
+    //
+    // const validation = await bundler.simulateValidation(activateOp);
+    // if (validation.status !== 0) {
+    //     throw new Error(`error code:${validation.status}`);
+    // }
+    //
+    // const bundlerEvent = bundler.sendUserOperation(activateOp);
+    // bundlerEvent.on('error', (err: any) => {
+    //     console.log(err);
+    // });
+    // bundlerEvent.on('send', (userOpHash: string) => {
+    //     console.log('send: ' + userOpHash);
+    // });
+    // bundlerEvent.on('receipt', (receipt: IUserOpReceipt) => {
+    //     console.log('receipt: ' + JSON.stringify(receipt));
+    // });
+    // bundlerEvent.on('timeout', () => {
+    //     console.log('timeout');
+    // });
 }
 
 main();
-```
-
-## License
-
-[MPL-2.0](LICENSE)

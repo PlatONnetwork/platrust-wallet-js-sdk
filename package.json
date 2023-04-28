@@ -1,0 +1,45 @@
+{
+  "name": "bonus-wallet-js-sdk",
+  "version": "v0.1.0",
+  "description": "The EIP-4337 library for Bonus-Wallet",
+  "main": "dist/app.js",
+  "scripts": {
+    "start": "ts-node src/app.ts",
+    "build": "rm -rf dist && tsc --project tsconfig.json",
+    "test": "mocha",
+    "docs": "npx typedoc src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/study-core/bonus-wallet-js-sdk.git"
+  },
+  "keywords": [
+    "AA",
+    "wallet",
+    "contract",
+    "EIP4337"
+  ],
+  "author": "soul",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/study-core/bonus-wallet-js-sdk/issues"
+  },
+  "homepage": "https://github.com/study-core/bonus-wallet-js-sdk",
+  "devDependencies": {
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.14.1",
+    "@types/node-fetch": "^2.6.3",
+    "mocha": "^10.2.0",
+    "ts-node": "^10.9.1",
+    "typedoc": "^0.24.6",
+    "typedoc-plugin-markdown": "^3.14.0",
+    "typedoc-plugin-missing-exports": "^1.0.0",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "dotenv": "8.6.0",
+    "ethereumjs-util": "^7.1.5",
+    "ethers": "^5.7.1",
+    "node-fetch": "^3.3.1"
+  }
+}
