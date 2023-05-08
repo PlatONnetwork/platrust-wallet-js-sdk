@@ -1,7 +1,6 @@
 import { Contract } from '../types/contract';
 
 const ABI: any =
-
     [
         {
             "inputs": [
@@ -578,7 +577,6 @@ const ABI: any =
             "type": "function"
         }
     ]
-
 ;
 
 

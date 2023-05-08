@@ -151,7 +151,7 @@ export class BonusWalletLib {
             }
         }
         const factory = new ethers.ContractFactory(walletProxyConfig.contractInterface, walletProxyConfig.bytecode);
-        const walletBytecode = factory.getDeployTransaction(walletLogicAddress, initializer).data;
+        const walletBytecode = factory.getDeployTransaction(walletLogicAddress).data;
         return walletBytecode as string;
     }
 

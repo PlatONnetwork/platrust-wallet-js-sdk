@@ -1,18 +1,35 @@
 import { ethers } from "ethers";
 import { SignatureMode } from "./utils/signatures";
 import { AddressZero } from "./config/constants";
-import { BonusWalletLib, packSignatureHash, signMessage, encodeSignature, recoverAddress } from './index';
+import {
+    BonusWalletLib,
+    packSignatureHash,
+    signMessage,
+    encodeSignature,
+    recoverAddress,
+    UserOperationReceipt
+} from './index';
 
 async function main() {
+    // 0x2E64cAbc8586CE95B5744DDE91Bc92182CbbD813, 0xa5748918ff73de2e3f6cde786a1567640349eefff2503de82b0bfa4d41d55101
+    // const pks = ['0x23eb17bebbc219e9866a7f5303e6c7f59da0fd930e19483e5e54af7ff1a42a43', '0xdaa5375a4b3d05cab2c17e474e1fb084bbd2a837488828d0a5f0a9f1323e25bc', '0x628acd12bc0cb6ecd71a9f9cd5eddfa92f57aa62791d49a779b3865615ad4b6b']
+    // let owners = ['0x3136142DEda2340dc2aC12c37F6D584652E056F1', '0x44Af20AB6335CDE46F7D73f88cf6b23CA8D8a286', '0xF609B9a73D1f53fd0Ec93D2b99F0174cfdeDc3Ac']
     const pks = ['0xa5748918ff73de2e3f6cde786a1567640349eefff2503de82b0bfa4d41d55101']
-    let owners = ['0x2E64cAbc8586CE95B5744DDE91Bc92182CbbD813']
+    const owners = ['0x2E64cAbc8586CE95B5744DDE91Bc92182CbbD813']
+
+    const chainURL = 'http://192.168.21.119:8801'
+    // const chainURL = 'https://devnet2openapi.platon.network/rpc'
+    const bundleURL = 'http://192.168.21.119:9901'
 
     const bonusWalletLib = new BonusWalletLib();
-    const walletLogic = '0x2e234DAe75C793f67A35089C9d99245E1C58470b'
-    const walletFactory = '0xF62849F9A0B5Bf2913b396098F7c7019b51A820a' // wallet proxy factory contract address
-    const relayerManagerAddr = '0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f'
+    const walletLogic = '0x7426C8f418de1EAf202956C8106B375b2B4ad088'
+    const walletFactory = '0x607A33F156377BF4C27b799CA1B524F24EacE297' // wallet proxy factory contract address
+    const relayerManagerAddr = '0x82c687F650994797c080C5038E2957fa03D38B4C'
+    // const walletLogic = '0x3BFEA8b7d16c94bb818b9B704F2FD8c2420d47c8'
+    // const walletFactory = '0xbcFB581c7509457b004b4456B98403758B5B7472' // wallet proxy factory contract address
+    // const relayerManagerAddr = '0x7859F310A112f24da3cbE157252c8683cD316302'
     // const salt = ethers.utils.formatBytes32String("abc")
-    const salt = '0x4aa639acfa86f7d60530bf462efdfdd9f4c4a6526226f5284c0af71240d47f25'
+    const salt = '0x46a31f1f917570aa8a60b2339f1a0469cbce2feb53c705746446981548845b3b'
     console.log("relayer: ", relayerManagerAddr);
 
     const initializer = await bonusWalletLib.getSetupCode(
@@ -46,7 +63,7 @@ async function main() {
         1000,// <number> maxPriorityFeePerGas 10Gwei
         5000000,
         500000,
-        50000
+        100000
     );
     console.log("user op: ", activateOp.toTuple())
     // const userOpHash = activateOp.getUserOpHash(
@@ -54,51 +71,58 @@ async function main() {
     //     2206132,                   // <uint32> chainId
     // );
     const userOpHash = await activateOp.getUserOpHashFromContract(
-        "0x32De9126ee5bc74039ADCCe66bc00d13C6651028",  // <address> EntryPoint Contract Address
-        new ethers.providers.JsonRpcProvider( "https://devnet2openapi.platon.network/rpc"),  // ethers.providers
+        relayerManagerAddr,  // <address> EntryPoint Contract Address
+        new ethers.providers.JsonRpcProvider( chainURL),  // ethers.providers
     );
     console.log("userOpHash: ", userOpHash);
-    const signedHash = packSignatureHash("0x18ce4fd4521d9ae133abbd6243d2ee7260a5c106876de58cbf2343564b68a228", SignatureMode.owner, 0, 0);
+    const signedHash = packSignatureHash(userOpHash, SignatureMode.owner, 0, 0);
 
     console.log("signedMsg: ", signedHash);
-    // (uint8 v, bytes32 r, bytes32 s) = vm.sign(privateKey, signedMsg);
-    // bytes memory sig = abi.encodePacked(r, s, v);
-    // console2.log("sig: ", vm.toString(sig));
-    // userOp.signature = Utils.encodeSignature(0, SignatureMode.owner, 0, 0, address(0), sig);
+
     const sig = signMessage(signedHash, pks[0])
     console.log('sig: ', sig)
-    const pk = recoverAddress(signedHash, "0xf5731ae0c243ab09b0c47edb1bffcbc72559274458ccdf6c14abbfb102e0c9800bd6948d378529ec783c0f3c9a99f6a21e1b5b85a5f6931401983bd7b59668091c")
-    console.log('pk: ', pk)
-    // let sigs = ''
-    // for (var i = 0; i < 2; i++) {
+    // let sigs = '0x'
+    // for (var i = 0; i < pks.length; i++) {
     //     const sig = signMessage(signedHash, pks[i])
     //     sigs = ethers.utils.solidityPack(
     //         ['bytes', 'bytes'],
     //         [sigs, sig]
     //     )
     // }
+    // console.log('sig: ', sigs)
+    const pk = recoverAddress(signedHash, sig.substring(0, 132))
+    console.log('pk: ', pk)
     activateOp.signature = encodeSignature(SignatureMode.owner, sig, 0, 0);
     console.log("signature: ", activateOp.signature);
+    // console.log('activateOp: ', activateOp.toJSON())
 
-    // const bundler = new bonusWalletLib.Bundler(
-    //     '0x0',  // <address> EntryPoint Contract Address
-    //     new ethers.providers.JsonRpcProvider('<RPC Provider>'),
-    //     ''
-    // );
+    const bundler = new bonusWalletLib.Bundler(
+        relayerManagerAddr,  // <address> EntryPoint Contract Address
+        new ethers.providers.JsonRpcProvider(chainURL),
+        bundleURL
+    );
+    // const entryPoints = await bundler.platon_supportedEntryPoints()
+    // console.log('entry points: ', entryPoints)
+    // // const uor = await bundler.platon_getUserOperationByHash(userOpHash).catch(err=>{
+    // //     console.log("error: ", err);
+    // // })
+    // //
+    // // console.log('******', uor)
     //
-    // const validation = await bundler.simulateValidation(activateOp);
-    // if (validation.status !== 0) {
-    //     throw new Error(`error code:${validation.status}`);
-    // }
+    const validation = await bundler.simulateHandleOp(activateOp);
+    console.log('validation: ', validation)
+    if (validation.status !== 0) {
+        throw new Error(`error code:${validation.status}`);
+    }
     //
     // const bundlerEvent = bundler.sendUserOperation(activateOp);
     // bundlerEvent.on('error', (err: any) => {
-    //     console.log(err);
+    //     console.log("error: ", err);
     // });
     // bundlerEvent.on('send', (userOpHash: string) => {
     //     console.log('send: ' + userOpHash);
     // });
-    // bundlerEvent.on('receipt', (receipt: IUserOpReceipt) => {
+    // bundlerEvent.on('receipt', (receipt: UserOperationReceipt) => {
     //     console.log('receipt: ' + JSON.stringify(receipt));
     // });
     // bundlerEvent.on('timeout', () => {

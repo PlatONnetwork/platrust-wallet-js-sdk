@@ -9,7 +9,6 @@
 import { Contract } from '../types/contract';
 
 const ABI: any =
-
     [
         {
             "inputs": [
