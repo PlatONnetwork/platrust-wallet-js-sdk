@@ -9,9 +9,11 @@ import { Bundler } from './entities/bundle';
 import { BigNumber, ContractInterface, ethers } from "ethers";
 import { NumberLike } from "./utils/numberLike";
 import { WalletFactoryContract } from "./contracts/walletFacroty";
-import { ERC20 as erc20 } from "./types/abi";
+import {ERC20 as erc20, executeFromModule} from "./types/abi";
 import { JsonFragment, Fragment } from '@ethersproject/abi'
 import { WalletProxyContract } from "./contracts/walletProxy";
+import {SecurityManagerContract} from "./contracts/securityManager";
+import {Operation} from "./types/operation";
 
 export class BonusWalletLib {
 
@@ -221,6 +223,54 @@ export class BonusWalletLib {
         return userOperation;
     }
 
+    public async lockWalletOp(
+        walletAddress: string,
+        etherProvider: ethers.providers.BaseProvider,
+        paymasterAndData: string | undefined,
+        maxFeePerGas: NumberLike,
+        maxPriorityFeePerGas: NumberLike,
+        callGasLimit: NumberLike,
+        verificationGasLimit: NumberLike,
+        preVerificationGas: NumberLike,
+    )  {
+        const nonce = await this.getNonce(walletAddress, etherProvider);
+        const lockOp = new UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
+
+        let encodeABI = new ethers.utils.Interface(SecurityManagerContract.ABI).encodeFunctionData("lock", []);
+        // console.log('encodeABI: ', encodeABI)
+        const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
+        // console.log('data: ', data);
+        lockOp.callData = new ethers.utils.Interface(executeFromModule)
+            .encodeFunctionData("executeFromModule",
+                [data]);
+
+        return lockOp
+    }
+
+    public async unlockWalletOp(
+        walletAddress: string,
+        etherProvider: ethers.providers.BaseProvider,
+        paymasterAndData: string | undefined,
+        maxFeePerGas: NumberLike,
+        maxPriorityFeePerGas: NumberLike,
+        callGasLimit: NumberLike,
+        verificationGasLimit: NumberLike,
+        preVerificationGas: NumberLike,
+    ) {
+        const nonce = await this.getNonce(walletAddress, etherProvider);
+        const unlockOp = new UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
+
+        let encodeABI = new ethers.utils.Interface(SecurityManagerContract.ABI).encodeFunctionData("unlock", []);
+        // console.log('encodeABI: ', encodeABI)
+        const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
+        // console.log('data: ', data);
+        unlockOp.callData = new ethers.utils.Interface(executeFromModule)
+            .encodeFunctionData("executeFromModule",
+                [data]);
+
+        return unlockOp
+    }
+
     private getPackedInitCodeUsingWalletFactory(
         walletFactory: string,
         walletLogic: string,
@@ -228,11 +278,12 @@ export class BonusWalletLib {
         salt: string,
         ) {
         const initCode = this.getInitCode(walletFactory, walletLogic, initializer, salt);
-        const packedInitCode = ethers.utils.solidityPack(
-            ['address', 'bytes'],
-            [walletFactory, initCode]
-        )
-        return packedInitCode;
+        // const packedInitCode = ethers.utils.solidityPack(
+        //     ['address', 'bytes'],
+        //     [walletFactory, initCode]
+        // )
+        // return packedInitCode;
+        return initCode;
     }
 
 
@@ -373,7 +424,7 @@ export class BonusWalletLib {
      * @returns { Number } the next nonce number
      * @memberof BonusWalletLib
      */
-    private async getNonce(walletAddress: string, etherProvider: ethers.providers.BaseProvider, defaultBlock = 'latest'): Promise<number> {
+    public async getNonce(walletAddress: string, etherProvider: ethers.providers.BaseProvider, defaultBlock = 'latest'): Promise<number> {
         try {
             const code = await etherProvider.getCode(walletAddress, defaultBlock);
             // check contract is exist

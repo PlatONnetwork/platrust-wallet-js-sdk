@@ -1,6 +1,6 @@
-const Operation = {
-    CALL: 'Call',
-    DElEGATECALL: 'DelegateCall',
+enum Operation {
+    CALL,
+    DElEGATECALL
 }
 
 export { Operation }
