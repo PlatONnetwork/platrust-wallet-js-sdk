@@ -223,6 +223,19 @@ export class BonusWalletLib {
         return userOperation;
     }
 
+    /**
+     * get the userOperation for lock the wallet
+     * @param {String} walletAddress the wallet contract address
+     * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
+     * @param {String} paymasterAndData the paymaster address and data
+     * @param { NumberLike } maxFeePerGas the max fee per gas
+     * @param { NumberLike } maxPriorityFeePerGas the max priority fee per gas
+     * @param { NumberLike } callGasLimit call gas limit
+     * @param { NumberLike } verificationGasLimit verification gas limit
+     * @param { NumberLike } preVerificationGas preVerification gas
+     * @returns { UserOperation } The lockWallet userOperation
+     * @memberof BonusWalletLib
+     */
     public async lockWalletOp(
         walletAddress: string,
         etherProvider: ethers.providers.BaseProvider,
@@ -247,6 +260,19 @@ export class BonusWalletLib {
         return lockOp
     }
 
+    /**
+     * get the userOperation for unlock the wallet
+     * @param {String} walletAddress the wallet contract address
+     * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
+     * @param {String} paymasterAndData the paymaster address and data
+     * @param { NumberLike } maxFeePerGas the max fee per gas
+     * @param { NumberLike } maxPriorityFeePerGas the max priority fee per gas
+     * @param { NumberLike } callGasLimit call gas limit
+     * @param { NumberLike } verificationGasLimit verification gas limit
+     * @param { NumberLike } preVerificationGas preVerification gas
+     * @returns { UserOperation } The unlockWallet userOperation
+     * @memberof BonusWalletLib
+     */
     public async unlockWalletOp(
         walletAddress: string,
         etherProvider: ethers.providers.BaseProvider,

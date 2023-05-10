@@ -21,9 +21,13 @@ async function main() {
     const relayerManagerAddr = '0x82c687F650994797c080C5038E2957fa03D38B4C'
     const bonusWalletLib = new BonusWalletLib();
 
-    const lockOp = await bonusWalletLib.lockWalletOp(wallet, provider, '0x', 100, 1000, 70000, 50000, 60000);
-    console.log('callData: ', lockOp.callData);
-    const userOpHash = await lockOp.getUserOpHashFromContract(
+    const nonce = await bonusWalletLib.getNonce(wallet, provider);
+    const USDCTokenAddr = '0x0F1dFcd21699F27E2a6e991E1248d674B6Aa656A';
+
+    const transferLATOp = await bonusWalletLib.Tokens.ERC20.transfer(wallet, nonce, '0x', 1000, 10000,  100000, 50000, 60000, USDCTokenAddr, '0xA7429Ae04d8bb89cfD572963adeA8CBf8219609A', '0xde0b6b3a7640000');
+    console.log('op: ', transferLATOp.toJSON());
+    console.log('callData: ', transferLATOp.callData);
+    const userOpHash = await transferLATOp.getUserOpHashFromContract(
         relayerManagerAddr,  // <address> EntryPoint Contract Address
         new ethers.providers.JsonRpcProvider( chainURL),  // ethers.providers
     );
@@ -40,8 +44,8 @@ async function main() {
         )
     }
     console.log('sig: ', sigs)
-    lockOp.signature = encodeSignature(SignatureMode.owner, sigs, 0, 0);
-    console.log('lockOp signature: ', lockOp.signature);
+    transferLATOp.signature = encodeSignature(SignatureMode.owner, sigs, 0, 0);
+    console.log('lockOp signature: ', transferLATOp.signature);
 
     const bundler = new bonusWalletLib.Bundler(
         relayerManagerAddr,  // <address> EntryPoint Contract Address
@@ -49,13 +53,13 @@ async function main() {
         bundleURL
     );
 
-    const validation = await bundler.simulateHandleOp(lockOp);
+    const validation = await bundler.simulateHandleOp(transferLATOp);
     console.log('validation: ', validation)
     if (validation.status !== 0) {
         throw new Error(`error code:${validation.status}`);
     }
 
-    const bundlerEvent = bundler.sendUserOperation(lockOp);
+    const bundlerEvent = bundler.sendUserOperation(transferLATOp);
     bundlerEvent.on('error', (err: any) => {
         console.log("error: ", err);
     });
@@ -69,11 +73,6 @@ async function main() {
         console.log('timeout');
     });
 
-    // const uor = await bundler.platon_getUserOperationByHash(userOpHash).catch(err=>{
-    //     console.log("error: ", err);
-    // })
-    //
-    // console.log('******', uor)
 }
 
 main()
