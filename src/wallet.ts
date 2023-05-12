@@ -3,17 +3,16 @@ import { SingletonFactoryAddress, AddressZero, bytes32_zero } from "./config/con
 import { UserOperation } from "./entities/userOperation";
 import { Contract } from "./types/contract";
 import { BaseWalletContract } from "./contracts/baseWallet";
-import { PaymasterContract } from "./contracts/payMaster";
 import { ERC1155, ERC20, ERC721, LAT } from "./entities/tokens";
 import { Bundler } from './entities/bundle';
+import { Paymaster } from './entities/paymaster';
 import { BigNumber, ContractInterface, ethers } from "ethers";
 import { NumberLike } from "./utils/numberLike";
 import { WalletFactoryContract } from "./contracts/walletFacroty";
-import {ERC20 as erc20, executeFromModule} from "./types/abi";
-import { JsonFragment, Fragment } from '@ethersproject/abi'
+import { executeFromModule } from "./types/abi";
 import { WalletProxyContract } from "./contracts/walletProxy";
-import {SecurityManagerContract} from "./contracts/securityManager";
-import {Operation} from "./types/operation";
+import { SecurityManagerContract } from "./contracts/securityManager";
+import { Operation } from "./types/operation";
 
 export class BonusWalletLib {
 
@@ -70,6 +69,7 @@ export class BonusWalletLib {
 
 
     public Bundler = Bundler;
+    public Paymaster = Paymaster;
 
     public Tokens = {
         ERC1155: new ERC1155(),
@@ -310,69 +310,6 @@ export class BonusWalletLib {
         // )
         // return packedInitCode;
         return initCode;
-    }
-
-
-    /**
-     * check if the token is supported by paymaster
-     * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
-     * @param { String } payMasterAddress paymaster contract address
-     * @param { String[] } tokens token address list
-     * @returns { String[] } supported token address list
-     * @memberof BonusWalletLib
-     */
-    public async paymasterSupportedToken(etherProvider: ethers.providers.BaseProvider, payMasterAddress: string, tokens: string[]) {
-        const paymaster = new ethers.Contract(payMasterAddress, PaymasterContract.ABI, etherProvider);
-        const reqs = [];
-        for (const token of tokens) {
-            reqs.push(paymaster.isSupportedToken(token));
-        }
-        const results = await Promise.all(reqs);
-        const supportedTokens = [];
-        for (let i = 0; i < tokens.length; i++) {
-            if (results[i] === true) {
-                supportedTokens.push(tokens[i]);
-            }
-        }
-        return supportedTokens;
-    }
-
-    /**
-     * get paymaster exchange price
-     * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
-     * @param { String } payMasterAddress paymaster contract address
-     * @param { String } token token address
-     * @param { Boolean? } fetchTokenDecimals fetch token decimals or not
-     * @returns { Object } exchange price
-     * @memberof BonusWalletLib
-     */
-    public async getPaymasterExchangePrice(etherProvider: ethers.providers.BaseProvider,
-                                           payMasterAddress: string, token: string, fetchTokenDecimals: boolean = false) {
-        const paymaster = new ethers.Contract(payMasterAddress, PaymasterContract.ABI, etherProvider);
-
-        if (await paymaster.isSupportedToken(token) === true) {
-            const exchangePrice = await paymaster.exchangePrice(token);
-            /*
-                exchangePrice.decimals
-                exchangePrice.price
-            */
-            const price: BigNumber = exchangePrice.price;
-            const decimals: number = exchangePrice.decimals;
-            let tokenDecimals: number | undefined;
-
-            if (fetchTokenDecimals) {
-                const erc20Token = new ethers.Contract(token, erc20, etherProvider);
-                tokenDecimals = await erc20Token.decimals();
-            }
-
-            return {
-                price,
-                decimals,
-                tokenDecimals
-            };
-        } else {
-            throw new Error("token is not supported");
-        }
     }
 
     /**

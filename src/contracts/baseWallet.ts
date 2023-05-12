@@ -442,6 +442,13 @@ const ABI: any =
             "type": "function"
         },
         {
+            "inputs": [],
+            "name": "addDeposit",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
             "inputs": [
                 {
                     "internalType": "address",
@@ -483,7 +490,7 @@ const ABI: any =
             "inputs": [
                 {
                     "internalType": "address",
-                    "name": "prevModule",
+                    "name": "_prevModule",
                     "type": "address"
                 },
                 {
@@ -640,6 +647,19 @@ const ABI: any =
         {
             "inputs": [],
             "name": "getChainId",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "getDeposit",
             "outputs": [
                 {
                     "internalType": "uint256",
@@ -1475,6 +1495,24 @@ const ABI: any =
                     "type": "uint256"
                 }
             ],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address payable",
+                    "name": "withdrawAddress",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "withdrawDepositTo",
+            "outputs": [],
             "stateMutability": "nonpayable",
             "type": "function"
         }
