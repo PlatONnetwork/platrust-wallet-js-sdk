@@ -8,20 +8,20 @@ import { ERC20 as erc20 } from "../types/abi";
  */
 export class Paymaster {
     private contract: ethers.Contract;
-    private _etherProvider: ethers.providers.BaseProvider;
+    private _wallet: ethers.Wallet;
 
 
     /**
      * Bundler utils
      * @constructor Bundler
      * @param {String} payMasterAddress paymaster contract address
-     * @param {ethers.providers.BaseProvider} etherProvider the ethers.js provider e.g. ethers.provider
+     * @param {ethers.Wallet} wallet the ethers.js wallet (paymaster owner)
      * @returns {Paymaster}
      * @memberof Paymaster
      */
-    constructor(payMasterAddress: string, etherProvider: ethers.providers.BaseProvider) {
-        this._etherProvider = etherProvider;
-        this.contract = new ethers.Contract(payMasterAddress, PaymasterContract.ABI, etherProvider);
+    constructor(payMasterAddress: string, wallet: ethers.Wallet) {
+        this._wallet = wallet;
+        this.contract = new ethers.Contract(payMasterAddress, PaymasterContract.ABI, wallet);
     }
 
     /**
@@ -167,7 +167,7 @@ export class Paymaster {
             let tokenDecimals: number | undefined;
 
             if (fetchTokenDecimals) {
-                const erc20Token = new ethers.Contract(token, erc20, this._etherProvider);
+                const erc20Token = new ethers.Contract(token, erc20, this._wallet);
                 tokenDecimals = await erc20Token.decimals();
             }
 
