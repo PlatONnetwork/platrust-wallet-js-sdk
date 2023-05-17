@@ -8,7 +8,7 @@
 
 <p align="center">
     <a href="https://github.com/study-core/bonus-wallet-contracts/"><b>Compatible Contracts</b></a> •
-    <a href="docs/modules.html"><b>Documentation</b></a>
+    <a href="docs/modules.md"><b>Documentation</b></a>
 </p>
 
 
