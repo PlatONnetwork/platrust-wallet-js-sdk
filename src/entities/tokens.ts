@@ -1,52 +1,12 @@
 import { UserOperation } from "./userOperation";
-import { executeFromModule, executeBatchFromModul, ERC1155 as erc1155, ERC20 as erc20, ERC721 as erc721 } from "../types/abi";
+import { Callbase } from "./callbase";
+import { executeFromModule, executeBatchFromModule, ERC1155 as erc1155, ERC20 as erc20, ERC721 as erc721 } from "../types/abi";
 import { BigNumber, ethers } from "ethers";
 import { NumberLike } from "../utils/numberLike";
 import { ApproveToken } from "../types/approveToken";
 import { Operation } from "../types/operation"
 import { BaseWalletContract } from "../contracts/baseWallet";
 
-/**
- * token interface
- * @class Token
- */
-export class Token {
-
-    /**
-     *
-     *
-     * @param {string} walletAddress
-     * @param {NumberLike} nonce
-     * @param {string} paymasterAndData
-     * @param { NumberLike } maxFeePerGas the max fee per gas
-     * @param { NumberLike } maxPriorityFeePerGas the max priority fee per gas
-     * @param { NumberLike } callGasLimit call gas limit
-     * @param { NumberLike } verificationGasLimit verification gas limit
-     * @param { NumberLike } preVerificationGas preVerification gas
-     * @param {string} data
-     * @return {*}
-     * @memberof Token
-     */
-    createOp(
-        walletAddress: string,
-        nonce: NumberLike,
-        paymasterAndData: string,
-        maxFeePerGas: NumberLike,
-        maxPriorityFeePerGas: NumberLike,
-        callGasLimit: NumberLike,
-        verificationGasLimit: NumberLike,
-        preVerificationGas: NumberLike,
-        data: string,
-    ) {
-        walletAddress = ethers.utils.getAddress(walletAddress);
-        const callData = new ethers.utils.Interface(executeFromModule)
-            .encodeFunctionData("executeFromModule",
-                [data]);
-        let userOperation: UserOperation = new UserOperation(walletAddress, nonce, undefined, callData, callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas);
-
-        return userOperation;
-    }
-}
 
 /**
  * erc20 token class
@@ -55,14 +15,14 @@ export class Token {
  */
 export class ERC20 {
 
-    private _token;
+    private _callbase;
 
     /**
      * @constructor
      *
      */
     constructor() {
-        this._token = new Token();
+        this._callbase = new Callbase();
     }
 
 
@@ -88,58 +48,11 @@ export class ERC20 {
         let encodeABI = new ethers.utils.Interface(erc20).encodeFunctionData("approve", [_spender, _value]);
         const iface = new ethers.utils.Interface(BaseWalletContract.ABI);
         const data = iface.encodeFunctionData("execute", [_token, 0, encodeABI, Operation.CALL]);
-        return this._token.createOp(walletAddress, nonce, paymasterAddress, maxFeePerGas, maxPriorityFeePerGas,callGasLimit, verificationGasLimit, preVerificationGas, data);
+        return this._callbase.createOp(walletAddress, nonce, paymasterAddress, maxFeePerGas, maxPriorityFeePerGas,callGasLimit, verificationGasLimit, preVerificationGas, data);
     }
 
     private readonly MAX_INT256 = '115792089237316195423570985008687907853269984665640564039457584007913129639935'; //uint256 MAX_INT = 2**256 - 1
 
-
-    /**
-     * get approve call data (use activate wallet)
-     * @param {ethers.providers.BaseProvider} etherProvider the ethers.js provider e.g. ethers.provider
-     * @param {string} walletAddress same as userOperation.sender
-     * @param {IApproveToken[]} approveData the approve data
-     * @returns {Promise<{callData: string, callGasLimit: string}>} the call data
-     */
-    getApproveCallData(approveData: ApproveToken[]) {
-        const approveCallData = {
-            callData: '0x',
-            callGasLimit: '0x0'
-        };
-        if (approveData.length > 0) {
-            // order by approveData.token asc
-            approveData.sort((a, b) => {
-                const aBig = BigNumber.from(a.token);
-                const bBig = BigNumber.from(b.token);
-                if (aBig.eq(bBig)) {
-                    throw new Error("token address is same");
-                } else if (aBig.lt(bBig)) {
-                    return -1;
-                } else {
-                    return 1;
-                }
-            });
-            const datas = [];
-            for (let i = 0; i < approveData.length; i++) {
-                const encodeABI = new ethers.utils.Interface(erc20).encodeFunctionData("approve", [
-                    approveData[i].spender,
-                    approveData[i].value === undefined ? this.MAX_INT256 : approveData[i].value
-                ]);
-                const iface = new ethers.utils.Interface(BaseWalletContract.ABI);
-                const data = iface.encodeFunctionData("execute", [approveData[i].token, 0, encodeABI, Operation.CALL]);
-
-                datas.push(data);
-            }
-            approveCallData.callData = new ethers.utils.Interface(executeBatchFromModul).encodeFunctionData("executeBatchFromModul",
-                [datas]);
-
-            // 50000 defined in tokenpaymaster
-            approveCallData.callGasLimit = (approveData.length * 50000).toString();
-
-
-        }
-        return approveCallData;
-    }
 
     /**
      * transfer token
@@ -164,7 +77,7 @@ export class ERC20 {
         let encodeABI = new ethers.utils.Interface(erc20).encodeFunctionData("transferFrom", [_from, _to, _value]);
         const iface = new ethers.utils.Interface(BaseWalletContract.ABI);
         const data = iface.encodeFunctionData("execute", [_token, 0, encodeABI, Operation.CALL]);
-        return this._token.createOp(walletAddress, nonce, paymasterAddress, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas, data);
+        return this._callbase.createOp(walletAddress, nonce, paymasterAddress, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas, data);
     }
 
     /**
@@ -189,7 +102,7 @@ export class ERC20 {
         let encodeABI = new ethers.utils.Interface(erc20).encodeFunctionData("transfer", [_to, _value]);
         const iface = new ethers.utils.Interface(BaseWalletContract.ABI);
         const data = iface.encodeFunctionData("execute", [_token, 0, encodeABI, Operation.CALL]);
-        return this._token.createOp(walletAddress, nonce, paymasterAddress, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas, data);
+        return this._callbase.createOp(walletAddress, nonce, paymasterAddress, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas, data);
     }
 }
 
@@ -198,13 +111,13 @@ export class ERC20 {
  * @class
  */
 export class ERC721 {
-    private _token;
+    private _callbase;
 
     /**
      * @constructor
      */
     constructor() {
-        this._token = new Token();
+        this._callbase = new Callbase();
     }
 
 
@@ -231,7 +144,7 @@ export class ERC721 {
         let encodeABI = new ethers.utils.Interface(erc721).encodeFunctionData("approve", [_spender, _tokenId]);
         const iface = new ethers.utils.Interface(BaseWalletContract.ABI);
         const data = iface.encodeFunctionData("execute", [_token, 0, encodeABI, Operation.CALL]);
-        return this._token.createOp(walletAddress, nonce, paymasterAddress, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas, data);
+        return this._callbase.createOp(walletAddress, nonce, paymasterAddress, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas, data);
     }
 
     /**
@@ -256,7 +169,7 @@ export class ERC721 {
         let encodeABI = new ethers.utils.Interface(erc721).encodeFunctionData("transferFrom", [_from, _to, _tokenId]);
         const iface = new ethers.utils.Interface(BaseWalletContract.ABI);
         const data = iface.encodeFunctionData("execute", [_token, 0, encodeABI, Operation.CALL]);
-        return this._token.createOp(walletAddress, nonce, paymasterAddress, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas, data);
+        return this._callbase.createOp(walletAddress, nonce, paymasterAddress, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas, data);
     }
 
     /**
@@ -282,7 +195,7 @@ export class ERC721 {
         let encodeABI = new ethers.utils.Interface(erc721).encodeFunctionData("transfer", [_to, _tokenId]);
         const iface = new ethers.utils.Interface(BaseWalletContract.ABI);
         const data = iface.encodeFunctionData("execute", [_token, 0, encodeABI, Operation.CALL]);
-        return this._token.createOp(walletAddress, nonce, paymasterAddress, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas, data);
+        return this._callbase.createOp(walletAddress, nonce, paymasterAddress, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas, data);
     }
 
     /**
@@ -308,7 +221,7 @@ export class ERC721 {
         let encodeABI = new ethers.utils.Interface(erc721).encodeFunctionData("safeTransferFrom", [_from, _to, _tokenId]);
         const iface = new ethers.utils.Interface(BaseWalletContract.ABI);
         const data = iface.encodeFunctionData("execute", [_token, 0, encodeABI, Operation.CALL]);
-        return this._token.createOp(walletAddress, nonce, paymasterAddress, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas, data);
+        return this._callbase.createOp(walletAddress, nonce, paymasterAddress, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas, data);
     }
 
     /**
@@ -334,7 +247,7 @@ export class ERC721 {
         let encodeABI = new ethers.utils.Interface(erc721).encodeFunctionData("setApprovalForAll", [_operator, _approved]);
         const iface = new ethers.utils.Interface(BaseWalletContract.ABI);
         const data = iface.encodeFunctionData("execute", [_token, 0, encodeABI, Operation.CALL]);
-        return this._token.createOp(walletAddress, nonce, paymasterAddress, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas, data);
+        return this._callbase.createOp(walletAddress, nonce, paymasterAddress, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas, data);
     }
 
 
@@ -346,13 +259,13 @@ export class ERC721 {
  * @class
  */
 export class ERC1155 {
-    private _token;
+    private _callbase;
 
     /**
      * @constructor
      */
     constructor() {
-        this._token = new Token();
+        this._callbase = new Callbase();
     }
     /**
      * safeTransferFrom
@@ -379,7 +292,7 @@ export class ERC1155 {
         let encodeABI = new ethers.utils.Interface(erc1155).encodeFunctionData("safeTransferFrom", [_from, _to, _id, _value, _data]);
         const iface = new ethers.utils.Interface(BaseWalletContract.ABI);
         const data = iface.encodeFunctionData("execute", [_token, 0, encodeABI, Operation.CALL]);
-        return this._token.createOp(walletAddress, nonce, paymasterAddress, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas, data);
+        return this._callbase.createOp(walletAddress, nonce, paymasterAddress, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas, data);
     }
 
     /**
@@ -408,7 +321,7 @@ export class ERC1155 {
         let encodeABI = new ethers.utils.Interface(erc1155).encodeFunctionData("safeBatchTransferFrom", [_from, _to, _ids, _values, _data]);
         const iface = new ethers.utils.Interface(BaseWalletContract.ABI);
         const data = iface.encodeFunctionData("execute", [_token, 0, encodeABI, Operation.CALL]);
-        return this._token.createOp(walletAddress, nonce, paymasterAddress, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas, data);
+        return this._callbase.createOp(walletAddress, nonce, paymasterAddress, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas, data);
     }
 
     /**
@@ -434,7 +347,7 @@ export class ERC1155 {
         let encodeABI = new ethers.utils.Interface(erc1155).encodeFunctionData("setApprovalForAll", [_operator, _approved]);
         const iface = new ethers.utils.Interface(BaseWalletContract.ABI);
         const data = iface.encodeFunctionData("execute", [_token, 0, encodeABI, Operation.CALL]);
-        return this._token.createOp(walletAddress, nonce, paymasterAddress, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas, data);
+        return this._callbase.createOp(walletAddress, nonce, paymasterAddress, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas, data);
     }
 
 
@@ -445,13 +358,13 @@ export class ERC1155 {
  * @class
  */
 export class LAT {
-    private _token;
+    private _callbase;
 
     /**
      * @constructor
      */
     constructor() {
-        this._token = new Token();
+        this._callbase = new Callbase();
     }
 
     /**
@@ -476,6 +389,6 @@ export class LAT {
 
         const iface = new ethers.utils.Interface(BaseWalletContract.ABI);
         const data = iface.encodeFunctionData("execute", [to, value, '0x', Operation.CALL]);
-        return this._token.createOp(walletAddress, nonce, paymasterAddress, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas, data);
+        return this._callbase.createOp(walletAddress, nonce, paymasterAddress, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas, data);
     }
 }

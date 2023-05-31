@@ -26,8 +26,7 @@ export class ApiTimeOut {
 export class Bundler {
     private _entryPoint: string = '';
     private _etherProvider: ethers.providers.BaseProvider;
-    private _bundlerApi?: string;
-    private _eoaPrivateKey?: string;
+    private _bundlerApiURL?: string;
     private _wallet?: ethers.Wallet;
     private _entryPointContract?: ethers.Contract;
     private _timeout: ApiTimeOut = new ApiTimeOut();
@@ -38,19 +37,15 @@ export class Bundler {
      * @constructor Bundler
      * @param {String} entryPoint the entry point address
      * @param {ethers.providers.BaseProvider} etherProvider the ethers.js provider e.g. ethers.provider
-     * @param {String} bundlerApiOrEOAPrivateKey the bundler api url or the EOA private key
+     * @param {String} bundlerApiURL the bundler api url or the EOA private key
      * @param {ApiTimeOut?} timeout the timeout
      * @returns {Bundler}
      * @memberof Bundler
      */
-    constructor(entryPoint: string, etherProvider: ethers.providers.BaseProvider, bundlerApiOrEOAPrivateKey: string, timeout?: ApiTimeOut) {
+    constructor(entryPoint: string, etherProvider: ethers.providers.BaseProvider, bundlerApiURL: string, timeout?: ApiTimeOut) {
         this._entryPoint = entryPoint;
         this._etherProvider = etherProvider;
-        if (bundlerApiOrEOAPrivateKey.startsWith('0x')) {
-            this._eoaPrivateKey = bundlerApiOrEOAPrivateKey;
-        } else {
-            this._bundlerApi = bundlerApiOrEOAPrivateKey;
-        }
+        this._bundlerApiURL = bundlerApiURL;
         if (timeout) {
             this._timeout = timeout;
         }
@@ -58,13 +53,13 @@ export class Bundler {
 
 
     private async rpcRequest<T1, T2>(data: RPCRequest<T1>, timeout?: number): Promise<T2> {
-        if (!this._bundlerApi) {
+        if (!this._bundlerApiURL) {
             throw new Error('bundlerApi is not set');
         }
         if (typeof timeout === 'undefined') {
             timeout = this._timeout.web3ApiRequestTimeout;
         }
-        let response = await HttpRequest.post(this._bundlerApi, data, timeout);
+        let response = await HttpRequest.post(this._bundlerApiURL, data, timeout);
         if (response) {
             const rpcResp = response as RPCResponse<T2>;
             if (!rpcResp.error) {
@@ -100,7 +95,7 @@ export class Bundler {
 
 
             // test bundlerApi
-            if (this._bundlerApi) {
+            if (this._bundlerApiURL) {
                 const chainId = BigNumber.from(await this.platon_chainId()).toNumber();
                 if (chainId !== this._chainId) {
                     throw new Error('bundlerApi error');
@@ -110,13 +105,6 @@ export class Bundler {
                     throw new Error('bundlerApi error');
                 }
             }
-
-            // if (this._eoaPrivateKey) {
-            //     this._wallet = new ethers.Wallet(this._eoaPrivateKey, this._etherProvider);
-            //     this._entryPointContract = new ethers.Contract(this._entryPoint, EntryPointContract.ABI, this._wallet);
-            // } else {
-            //     this._entryPointContract = new ethers.Contract(this._entryPoint, EntryPointContract.ABI);
-            // }
             this._entryPointContract = new ethers.Contract(this._entryPoint, EntryPointContract.ABI);
             this._init = true;
         } catch (error) {
@@ -131,7 +119,7 @@ export class Bundler {
      * @memberof Bundler
      */
     public async platon_chainId(timeout?: number): Promise<string> {
-        if (this._bundlerApi) {
+        if (this._bundlerApiURL) {
             return this.rpcRequest<any[], string>(
                 {
                     jsonrpc: '2.0',
@@ -152,7 +140,7 @@ export class Bundler {
      * @memberof Bundler
      */
     public async platon_supportedEntryPoints(timeout?: number) {
-        if (this._bundlerApi) {
+        if (this._bundlerApiURL) {
             return this.rpcRequest<any[], string[]>(
                 {
                     jsonrpc: '2.0',
@@ -173,7 +161,7 @@ export class Bundler {
      * @memberof Bundler
      */
     public async platon_sendUserOperation(userOp: UserOperation, timeout?: number) {
-        if (this._bundlerApi) {
+        if (this._bundlerApiURL) {
             return this.rpcRequest<any[], string>(
                 {
                     jsonrpc: '2.0',
@@ -205,7 +193,7 @@ export class Bundler {
             callGasLimit: '0x0'
         };
 
-        if (this._bundlerApi) {
+        if (this._bundlerApiURL) {
             const _estimateUserOpGasResult = await this.rpcRequest<any[], EstimateUserOpGas>(
                 {
                     jsonrpc: '2.0',
@@ -243,7 +231,7 @@ export class Bundler {
      * @memberof Bundler
      */
     public async platon_getUserOperationReceipt(userOpHash: string, timeout?: number) {
-        if (this._bundlerApi) {
+        if (this._bundlerApiURL) {
             return this.rpcRequest<string[], UserOperationReceipt | null>(
                 {
                     jsonrpc: '2.0',
@@ -265,7 +253,7 @@ export class Bundler {
      * @memberof Bundler
      */
     public async platon_getUserOperationByHash(userOpHash: string, timeout?: number) {
-        if (this._bundlerApi) {
+        if (this._bundlerApiURL) {
             return this.rpcRequest<string[], UserOperationReceipt | null>(
                 {
                     jsonrpc: '2.0',

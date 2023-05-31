@@ -1,7 +1,9 @@
 import { JsonFragment, Fragment } from '@ethersproject/abi'
 
 const executeFromModule = ["function executeFromModule(bytes memory _data)"];
-const executeBatchFromModul = ["function executeBatchFromModul(bytes[] calldata _data)"];
+const executeFromModuleReturnData = ["function executeFromModuleReturnData(bytes memory _data)"];
+const executeBatchFromModule = ["function executeBatchFromModule(bytes[] calldata _data)"];
+const executeBatchFromModuleReturnData = ["function executeBatchFromModuleReturnData(bytes[] calldata _data)"];
 
 const ERC20: JsonFragment[] = [
     {
@@ -546,4 +548,4 @@ const ERC1155: JsonFragment[] = [
     }
 ];
 
-export { executeFromModule, executeBatchFromModul, ERC20, ERC721, ERC1155 };
+export { executeFromModule, executeFromModuleReturnData, executeBatchFromModule, executeBatchFromModuleReturnData, ERC20, ERC721, ERC1155 };
