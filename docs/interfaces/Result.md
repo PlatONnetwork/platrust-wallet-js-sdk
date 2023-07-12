@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[types/result.ts:44](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/types/result.ts#L44)
+[types/result.ts:44](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/types/result.ts#L44)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[types/result.ts:42](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/types/result.ts#L42)
+[types/result.ts:42](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/types/result.ts#L42)
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 #### Defined in
 
-[types/result.ts:40](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/types/result.ts#L40)
+[types/result.ts:40](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/types/result.ts#L40)

@@ -24,7 +24,7 @@
 
 #### Defined in
 
-[types/userOperationReceipt.ts:28](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/types/userOperationReceipt.ts#L28)
+[types/userOperationReceipt.ts:28](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/types/userOperationReceipt.ts#L28)
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 #### Defined in
 
-[types/userOperationReceipt.ts:29](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/types/userOperationReceipt.ts#L29)
+[types/userOperationReceipt.ts:29](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/types/userOperationReceipt.ts#L29)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 #### Defined in
 
-[types/userOperationReceipt.ts:31](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/types/userOperationReceipt.ts#L31)
+[types/userOperationReceipt.ts:31](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/types/userOperationReceipt.ts#L31)
 
 ___
 
@@ -54,7 +54,7 @@ ___
 
 #### Defined in
 
-[types/userOperationReceipt.ts:27](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/types/userOperationReceipt.ts#L27)
+[types/userOperationReceipt.ts:27](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/types/userOperationReceipt.ts#L27)
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 #### Defined in
 
-[types/userOperationReceipt.ts:26](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/types/userOperationReceipt.ts#L26)
+[types/userOperationReceipt.ts:26](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/types/userOperationReceipt.ts#L26)
 
 ___
 
@@ -74,7 +74,7 @@ ___
 
 #### Defined in
 
-[types/userOperationReceipt.ts:32](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/types/userOperationReceipt.ts#L32)
+[types/userOperationReceipt.ts:32](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/types/userOperationReceipt.ts#L32)
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 #### Defined in
 
-[types/userOperationReceipt.ts:25](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/types/userOperationReceipt.ts#L25)
+[types/userOperationReceipt.ts:25](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/types/userOperationReceipt.ts#L25)
 
 ___
 
@@ -94,7 +94,7 @@ ___
 
 #### Defined in
 
-[types/userOperationReceipt.ts:30](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/types/userOperationReceipt.ts#L30)
+[types/userOperationReceipt.ts:30](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/types/userOperationReceipt.ts#L30)
 
 ___
 
@@ -104,4 +104,4 @@ ___
 
 #### Defined in
 
-[types/userOperationReceipt.ts:24](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/types/userOperationReceipt.ts#L24)
+[types/userOperationReceipt.ts:24](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/types/userOperationReceipt.ts#L24)

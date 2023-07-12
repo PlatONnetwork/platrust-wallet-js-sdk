@@ -87,7 +87,7 @@ UserOperation
 
 #### Defined in
 
-[entities/userOperation.ts:41](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L41)
+[entities/userOperation.ts:41](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L41)
 
 ## Properties
 
@@ -109,7 +109,7 @@ UserOperation
 
 #### Defined in
 
-[entities/userOperation.ts:55](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L55)
+[entities/userOperation.ts:55](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L55)
 
 ___
 
@@ -119,7 +119,7 @@ ___
 
 #### Defined in
 
-[entities/userOperation.ts:91](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L91)
+[entities/userOperation.ts:91](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L91)
 
 ___
 
@@ -129,7 +129,7 @@ ___
 
 #### Defined in
 
-[entities/userOperation.ts:98](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L98)
+[entities/userOperation.ts:98](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L98)
 
 ___
 
@@ -139,7 +139,7 @@ ___
 
 #### Defined in
 
-[entities/userOperation.ts:83](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L83)
+[entities/userOperation.ts:83](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L83)
 
 ___
 
@@ -149,7 +149,7 @@ ___
 
 #### Defined in
 
-[entities/userOperation.ts:119](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L119)
+[entities/userOperation.ts:119](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L119)
 
 ___
 
@@ -159,7 +159,7 @@ ___
 
 #### Defined in
 
-[entities/userOperation.ts:126](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L126)
+[entities/userOperation.ts:126](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L126)
 
 ___
 
@@ -169,7 +169,7 @@ ___
 
 #### Defined in
 
-[entities/userOperation.ts:76](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L76)
+[entities/userOperation.ts:76](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L76)
 
 ___
 
@@ -179,7 +179,7 @@ ___
 
 #### Defined in
 
-[entities/userOperation.ts:133](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L133)
+[entities/userOperation.ts:133](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L133)
 
 ___
 
@@ -189,7 +189,7 @@ ___
 
 #### Defined in
 
-[entities/userOperation.ts:112](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L112)
+[entities/userOperation.ts:112](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L112)
 
 ___
 
@@ -199,7 +199,7 @@ ___
 
 #### Defined in
 
-[entities/userOperation.ts:65](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L65)
+[entities/userOperation.ts:65](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L65)
 
 ___
 
@@ -209,7 +209,7 @@ ___
 
 #### Defined in
 
-[entities/userOperation.ts:140](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L140)
+[entities/userOperation.ts:140](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L140)
 
 ___
 
@@ -219,7 +219,7 @@ ___
 
 #### Defined in
 
-[entities/userOperation.ts:105](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L105)
+[entities/userOperation.ts:105](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L105)
 
 ## Accessors
 
@@ -235,7 +235,7 @@ the callData
 
 #### Defined in
 
-[entities/userOperation.ts:92](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L92)
+[entities/userOperation.ts:92](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L92)
 
 • `set` **callData**(`value`): `void`
 
@@ -253,7 +253,7 @@ the callData
 
 #### Defined in
 
-[entities/userOperation.ts:95](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L95)
+[entities/userOperation.ts:95](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L95)
 
 ___
 
@@ -267,7 +267,7 @@ ___
 
 #### Defined in
 
-[entities/userOperation.ts:99](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L99)
+[entities/userOperation.ts:99](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L99)
 
 • `set` **callGasLimit**(`value`): `void`
 
@@ -283,7 +283,7 @@ ___
 
 #### Defined in
 
-[entities/userOperation.ts:102](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L102)
+[entities/userOperation.ts:102](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L102)
 
 ___
 
@@ -299,7 +299,7 @@ the initCode
 
 #### Defined in
 
-[entities/userOperation.ts:84](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L84)
+[entities/userOperation.ts:84](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L84)
 
 • `set` **initCode**(`value`): `void`
 
@@ -317,7 +317,7 @@ the initCode
 
 #### Defined in
 
-[entities/userOperation.ts:87](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L87)
+[entities/userOperation.ts:87](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L87)
 
 ___
 
@@ -333,7 +333,7 @@ the maxFeePerGas
 
 #### Defined in
 
-[entities/userOperation.ts:120](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L120)
+[entities/userOperation.ts:120](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L120)
 
 • `set` **maxFeePerGas**(`value`): `void`
 
@@ -351,7 +351,7 @@ the maxFeePerGas
 
 #### Defined in
 
-[entities/userOperation.ts:123](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L123)
+[entities/userOperation.ts:123](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L123)
 
 ___
 
@@ -367,7 +367,7 @@ the maxPriorityFeePerGas
 
 #### Defined in
 
-[entities/userOperation.ts:127](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L127)
+[entities/userOperation.ts:127](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L127)
 
 • `set` **maxPriorityFeePerGas**(`value`): `void`
 
@@ -385,7 +385,7 @@ the maxPriorityFeePerGas
 
 #### Defined in
 
-[entities/userOperation.ts:130](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L130)
+[entities/userOperation.ts:130](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L130)
 
 ___
 
@@ -401,7 +401,7 @@ the nonce
 
 #### Defined in
 
-[entities/userOperation.ts:77](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L77)
+[entities/userOperation.ts:77](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L77)
 
 • `set` **nonce**(`value`): `void`
 
@@ -419,7 +419,7 @@ the nonce
 
 #### Defined in
 
-[entities/userOperation.ts:80](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L80)
+[entities/userOperation.ts:80](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L80)
 
 ___
 
@@ -435,7 +435,7 @@ the paymasterAndData
 
 #### Defined in
 
-[entities/userOperation.ts:134](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L134)
+[entities/userOperation.ts:134](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L134)
 
 • `set` **paymasterAndData**(`value`): `void`
 
@@ -453,7 +453,7 @@ the paymasterAndData
 
 #### Defined in
 
-[entities/userOperation.ts:137](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L137)
+[entities/userOperation.ts:137](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L137)
 
 ___
 
@@ -469,7 +469,7 @@ the preVerificationGas
 
 #### Defined in
 
-[entities/userOperation.ts:113](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L113)
+[entities/userOperation.ts:113](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L113)
 
 • `set` **preVerificationGas**(`value`): `void`
 
@@ -487,7 +487,7 @@ the preVerificationGas
 
 #### Defined in
 
-[entities/userOperation.ts:116](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L116)
+[entities/userOperation.ts:116](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L116)
 
 ___
 
@@ -503,7 +503,7 @@ the sender address
 
 #### Defined in
 
-[entities/userOperation.ts:67](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L67)
+[entities/userOperation.ts:67](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L67)
 
 • `set` **sender**(`value`): `void`
 
@@ -521,7 +521,7 @@ the sender address
 
 #### Defined in
 
-[entities/userOperation.ts:70](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L70)
+[entities/userOperation.ts:70](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L70)
 
 ___
 
@@ -537,7 +537,7 @@ the signature
 
 #### Defined in
 
-[entities/userOperation.ts:141](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L141)
+[entities/userOperation.ts:141](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L141)
 
 • `set` **signature**(`value`): `void`
 
@@ -555,7 +555,7 @@ the signature
 
 #### Defined in
 
-[entities/userOperation.ts:144](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L144)
+[entities/userOperation.ts:144](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L144)
 
 ___
 
@@ -571,7 +571,7 @@ the verificationGasLimit
 
 #### Defined in
 
-[entities/userOperation.ts:106](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L106)
+[entities/userOperation.ts:106](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L106)
 
 • `set` **verificationGasLimit**(`value`): `void`
 
@@ -589,7 +589,7 @@ the verificationGasLimit
 
 #### Defined in
 
-[entities/userOperation.ts:109](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L109)
+[entities/userOperation.ts:109](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L109)
 
 ## Methods
 
@@ -611,7 +611,7 @@ UserOperation
 
 #### Defined in
 
-[entities/userOperation.ts:200](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L200)
+[entities/userOperation.ts:200](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L200)
 
 ___
 
@@ -625,7 +625,7 @@ ___
 
 #### Defined in
 
-[entities/userOperation.ts:476](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L476)
+[entities/userOperation.ts:476](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L476)
 
 ___
 
@@ -646,7 +646,7 @@ ___
 
 #### Defined in
 
-[entities/userOperation.ts:381](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L381)
+[entities/userOperation.ts:381](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L381)
 
 ___
 
@@ -670,7 +670,7 @@ the userOperation struct
 
 #### Defined in
 
-[entities/userOperation.ts:178](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L178)
+[entities/userOperation.ts:178](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L178)
 
 ___
 
@@ -701,7 +701,7 @@ the UserOpHash (userOp hash)
 
 #### Defined in
 
-[entities/userOperation.ts:439](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L439)
+[entities/userOperation.ts:439](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L439)
 
 ___
 
@@ -733,7 +733,7 @@ the UserOpHash (userOp hash)
 
 #### Defined in
 
-[entities/userOperation.ts:456](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L456)
+[entities/userOperation.ts:456](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L456)
 
 ___
 
@@ -753,7 +753,7 @@ ___
 
 #### Defined in
 
-[entities/userOperation.ts:387](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L387)
+[entities/userOperation.ts:387](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L387)
 
 ___
 
@@ -777,7 +777,7 @@ the paymaster sign hash
 
 #### Defined in
 
-[entities/userOperation.ts:336](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L336)
+[entities/userOperation.ts:336](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L336)
 
 ___
 
@@ -804,7 +804,7 @@ UserOperation
 
 #### Defined in
 
-[entities/userOperation.ts:372](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L372)
+[entities/userOperation.ts:372](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L372)
 
 ___
 
@@ -828,7 +828,7 @@ the userOperation json string
 
 #### Defined in
 
-[entities/userOperation.ts:215](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L215)
+[entities/userOperation.ts:215](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L215)
 
 ___
 
@@ -852,7 +852,7 @@ the userOperation tuple string
 
 #### Defined in
 
-[entities/userOperation.ts:155](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L155)
+[entities/userOperation.ts:155](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L155)
 
 ___
 
@@ -882,7 +882,7 @@ the userOperation object
 
 #### Defined in
 
-[entities/userOperation.ts:238](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L238)
+[entities/userOperation.ts:238](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L238)
 
 ___
 
@@ -912,4 +912,4 @@ the userOperation object
 
 #### Defined in
 
-[entities/userOperation.ts:289](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/userOperation.ts#L289)
+[entities/userOperation.ts:289](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/userOperation.ts#L289)

@@ -12,11 +12,10 @@ bundler utils
 
 ### Properties
 
-- [\_bundlerApi](Bundler.md#_bundlerapi)
+- [\_bundlerApiURL](Bundler.md#_bundlerapiurl)
 - [\_chainId](Bundler.md#_chainid)
 - [\_entryPoint](Bundler.md#_entrypoint)
 - [\_entryPointContract](Bundler.md#_entrypointcontract)
-- [\_eoaPrivateKey](Bundler.md#_eoaprivatekey)
 - [\_etherProvider](Bundler.md#_etherprovider)
 - [\_init](Bundler.md#_init)
 - [\_timeout](Bundler.md#_timeout)
@@ -46,7 +45,7 @@ bundler utils
 
 ### constructor
 
-• **new Bundler**(`entryPoint`, `etherProvider`, `bundlerApiOrEOAPrivateKey`, `timeout?`)
+• **new Bundler**(`entryPoint`, `etherProvider`, `bundlerApiURL`, `timeout?`)
 
 Bundler utils
 
@@ -60,22 +59,22 @@ Bundler
 | :------ | :------ | :------ |
 | `entryPoint` | `string` | the entry point address |
 | `etherProvider` | `BaseProvider` | the ethers.js provider e.g. ethers.provider |
-| `bundlerApiOrEOAPrivateKey` | `string` | the bundler api url or the EOA private key |
+| `bundlerApiURL` | `string` | the bundler api url or the EOA private key |
 | `timeout?` | `ApiTimeOut` | the timeout |
 
 #### Defined in
 
-[entities/bundle.ts:46](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L46)
+[entities/bundle.ts:45](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L45)
 
 ## Properties
 
-### \_bundlerApi
+### \_bundlerApiURL
 
-• `Private` `Optional` **\_bundlerApi**: `string`
+• `Private` `Optional` **\_bundlerApiURL**: `string`
 
 #### Defined in
 
-[entities/bundle.ts:29](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L29)
+[entities/bundle.ts:29](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L29)
 
 ___
 
@@ -85,7 +84,7 @@ ___
 
 #### Defined in
 
-[entities/bundle.ts:34](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L34)
+[entities/bundle.ts:33](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L33)
 
 ___
 
@@ -95,7 +94,7 @@ ___
 
 #### Defined in
 
-[entities/bundle.ts:27](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L27)
+[entities/bundle.ts:27](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L27)
 
 ___
 
@@ -105,17 +104,7 @@ ___
 
 #### Defined in
 
-[entities/bundle.ts:32](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L32)
-
-___
-
-### \_eoaPrivateKey
-
-• `Private` `Optional` **\_eoaPrivateKey**: `string`
-
-#### Defined in
-
-[entities/bundle.ts:30](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L30)
+[entities/bundle.ts:31](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L31)
 
 ___
 
@@ -125,7 +114,7 @@ ___
 
 #### Defined in
 
-[entities/bundle.ts:28](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L28)
+[entities/bundle.ts:28](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L28)
 
 ___
 
@@ -135,7 +124,7 @@ ___
 
 #### Defined in
 
-[entities/bundle.ts:80](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L80)
+[entities/bundle.ts:75](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L75)
 
 ___
 
@@ -145,7 +134,7 @@ ___
 
 #### Defined in
 
-[entities/bundle.ts:33](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L33)
+[entities/bundle.ts:32](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L32)
 
 ___
 
@@ -155,7 +144,7 @@ ___
 
 #### Defined in
 
-[entities/bundle.ts:31](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L31)
+[entities/bundle.ts:30](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L30)
 
 ## Methods
 
@@ -175,7 +164,7 @@ ___
 
 #### Defined in
 
-[entities/bundle.ts:228](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L228)
+[entities/bundle.ts:216](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L216)
 
 ___
 
@@ -195,7 +184,7 @@ ___
 
 #### Defined in
 
-[entities/bundle.ts:452](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L452)
+[entities/bundle.ts:440](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L440)
 
 ___
 
@@ -215,7 +204,7 @@ ___
 
 #### Defined in
 
-[entities/bundle.ts:326](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L326)
+[entities/bundle.ts:314](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L314)
 
 ___
 
@@ -235,7 +224,7 @@ ___
 
 #### Defined in
 
-[entities/bundle.ts:349](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L349)
+[entities/bundle.ts:337](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L337)
 
 ___
 
@@ -255,7 +244,7 @@ ___
 
 #### Defined in
 
-[entities/bundle.ts:369](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L369)
+[entities/bundle.ts:357](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L357)
 
 ___
 
@@ -271,7 +260,7 @@ init the bundler
 
 #### Defined in
 
-[entities/bundle.ts:86](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L86)
+[entities/bundle.ts:81](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L81)
 
 ___
 
@@ -299,7 +288,7 @@ supported chainid
 
 #### Defined in
 
-[entities/bundle.ts:133](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L133)
+[entities/bundle.ts:121](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L121)
 
 ___
 
@@ -326,7 +315,7 @@ EstimateUserOpGas
 
 #### Defined in
 
-[entities/bundle.ts:200](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L200)
+[entities/bundle.ts:188](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L188)
 
 ___
 
@@ -353,7 +342,7 @@ User operation
 
 #### Defined in
 
-[entities/bundle.ts:267](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L267)
+[entities/bundle.ts:255](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L255)
 
 ___
 
@@ -380,7 +369,7 @@ User operation receipt
 
 #### Defined in
 
-[entities/bundle.ts:245](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L245)
+[entities/bundle.ts:233](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L233)
 
 ___
 
@@ -409,7 +398,7 @@ user operation hash
 
 #### Defined in
 
-[entities/bundle.ts:175](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L175)
+[entities/bundle.ts:163](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L163)
 
 ___
 
@@ -437,7 +426,7 @@ supported entry points
 
 #### Defined in
 
-[entities/bundle.ts:154](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L154)
+[entities/bundle.ts:142](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L142)
 
 ___
 
@@ -465,7 +454,7 @@ ___
 
 #### Defined in
 
-[entities/bundle.ts:60](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L60)
+[entities/bundle.ts:55](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L55)
 
 ___
 
@@ -496,7 +485,7 @@ Event emitter
 
 #### Defined in
 
-[entities/bundle.ts:298](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L298)
+[entities/bundle.ts:286](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L286)
 
 ___
 
@@ -526,7 +515,7 @@ result
 
 #### Defined in
 
-[entities/bundle.ts:413](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L413)
+[entities/bundle.ts:401](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L401)
 
 ___
 
@@ -554,7 +543,7 @@ result
 
 #### Defined in
 
-[entities/bundle.ts:448](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L448)
+[entities/bundle.ts:436](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L436)
 
 ___
 
@@ -574,4 +563,4 @@ ___
 
 #### Defined in
 
-[entities/bundle.ts:281](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/entities/bundle.ts#L281)
+[entities/bundle.ts:269](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/bundle.ts#L269)

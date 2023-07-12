@@ -23,18 +23,35 @@
 ### Methods
 
 - [activateWalletOp](BonusWalletLib.md#activatewalletop)
+- [addOwnerWithThresholdOp](BonusWalletLib.md#addownerwiththresholdop)
 - [calculateWalletAddress](BonusWalletLib.md#calculatewalletaddress)
 - [calculateWalletAddressByCode](BonusWalletLib.md#calculatewalletaddressbycode)
 - [calculateWalletAddressByCodeHash](BonusWalletLib.md#calculatewalletaddressbycodehash)
+- [changeThresholdOp](BonusWalletLib.md#changethresholdop)
+- [clearSessionOp](BonusWalletLib.md#clearsessionop)
+- [disableModuleOp](BonusWalletLib.md#disablemoduleop)
+- [enableModuleOp](BonusWalletLib.md#enablemoduleop)
+- [getEntryPoint](BonusWalletLib.md#getentrypoint)
 - [getInitCode](BonusWalletLib.md#getinitcode)
+- [getModulesPaginated](BonusWalletLib.md#getmodulespaginated)
 - [getNonce](BonusWalletLib.md#getnonce)
+- [getOwners](BonusWalletLib.md#getowners)
 - [getPackedInitCodeUsingWalletFactory](BonusWalletLib.md#getpackedinitcodeusingwalletfactory)
 - [getPaymasterData](BonusWalletLib.md#getpaymasterdata)
 - [getSetupCode](BonusWalletLib.md#getsetupcode)
+- [getThreshold](BonusWalletLib.md#getthreshold)
 - [getWalletCode](BonusWalletLib.md#getwalletcode)
+- [isEnabledModule](BonusWalletLib.md#isenabledmodule)
+- [isEnabledModules](BonusWalletLib.md#isenabledmodules)
+- [isOwner](BonusWalletLib.md#isowner)
 - [lockWalletOp](BonusWalletLib.md#lockwalletop)
 - [number2Bytes32](BonusWalletLib.md#number2bytes32)
+- [removeOwnerOp](BonusWalletLib.md#removeownerop)
+- [setFallbackHandlerOp](BonusWalletLib.md#setfallbackhandlerop)
+- [startSessionOp](BonusWalletLib.md#startsessionop)
+- [swapOwnerOp](BonusWalletLib.md#swapownerop)
 - [unlockWalletOp](BonusWalletLib.md#unlockwalletop)
+- [withdrawDepositOp](BonusWalletLib.md#withdrawdepositop)
 
 ## Constructors
 
@@ -54,7 +71,7 @@ BonusWalletLib
 
 #### Defined in
 
-[wallet.ts:37](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/wallet.ts#L37)
+[wallet.ts:37](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L37)
 
 ## Properties
 
@@ -64,7 +81,7 @@ BonusWalletLib
 
 #### Defined in
 
-[wallet.ts:71](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/wallet.ts#L71)
+[wallet.ts:71](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L71)
 
 ___
 
@@ -74,7 +91,7 @@ ___
 
 #### Defined in
 
-[wallet.ts:72](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/wallet.ts#L72)
+[wallet.ts:72](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L72)
 
 ___
 
@@ -93,7 +110,7 @@ ___
 
 #### Defined in
 
-[wallet.ts:74](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/wallet.ts#L74)
+[wallet.ts:74](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L74)
 
 ___
 
@@ -103,7 +120,7 @@ ___
 
 #### Defined in
 
-[wallet.ts:20](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/wallet.ts#L20)
+[wallet.ts:20](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L20)
 
 ___
 
@@ -121,7 +138,7 @@ ___
 
 #### Defined in
 
-[wallet.ts:64](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/wallet.ts#L64)
+[wallet.ts:64](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L64)
 
 ## Accessors
 
@@ -139,7 +156,7 @@ address
 
 #### Defined in
 
-[wallet.ts:57](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/wallet.ts#L57)
+[wallet.ts:57](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L57)
 
 ## Methods
 
@@ -176,7 +193,44 @@ The activate userOperation
 
 #### Defined in
 
-[wallet.ts:202](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/wallet.ts#L202)
+[wallet.ts:204](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L204)
+
+___
+
+### addOwnerWithThresholdOp
+
+▸ **addOwnerWithThresholdOp**(`walletAddress`, `etherProvider`, `owner`, `threshold`, `paymasterAndData`, `maxFeePerGas`, `maxPriorityFeePerGas`, `callGasLimit`, `verificationGasLimit`, `preVerificationGas`): `Promise`<[`UserOperation`](UserOperation.md)\>
+
+get the userOperation for adds owner to the wallet and updates the threshold
+
+**`Memberof`**
+
+BonusWalletLib
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `walletAddress` | `string` | the wallet contract address |
+| `etherProvider` | `BaseProvider` | the ethers.js provider e.g. ethers.provider |
+| `owner` | `string` | add owner address |
+| `threshold` | `number` | add threshold |
+| `paymasterAndData` | `undefined` \| `string` | the paymaster address and data |
+| `maxFeePerGas` | [`NumberLike`](../modules.md#numberlike) | the max fee per gas |
+| `maxPriorityFeePerGas` | [`NumberLike`](../modules.md#numberlike) | the max priority fee per gas |
+| `callGasLimit` | [`NumberLike`](../modules.md#numberlike) | call gas limit |
+| `verificationGasLimit` | [`NumberLike`](../modules.md#numberlike) | verification gas limit |
+| `preVerificationGas` | [`NumberLike`](../modules.md#numberlike) | preVerification gas |
+
+#### Returns
+
+`Promise`<[`UserOperation`](UserOperation.md)\>
+
+The addOwnerWithThresholdOp userOperation
+
+#### Defined in
+
+[wallet.ts:317](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L317)
 
 ___
 
@@ -207,7 +261,7 @@ the wallet address
 
 #### Defined in
 
-[wallet.ts:169](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/wallet.ts#L169)
+[wallet.ts:169](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L169)
 
 ___
 
@@ -237,7 +291,7 @@ wallet address
 
 #### Defined in
 
-[wallet.ts:338](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/wallet.ts#L338)
+[wallet.ts:868](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L868)
 
 ___
 
@@ -267,7 +321,180 @@ the wallet address
 
 #### Defined in
 
-[wallet.ts:370](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/wallet.ts#L370)
+[wallet.ts:899](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L899)
+
+___
+
+### changeThresholdOp
+
+▸ **changeThresholdOp**(`walletAddress`, `etherProvider`, `threshold`, `paymasterAndData`, `maxFeePerGas`, `maxPriorityFeePerGas`, `callGasLimit`, `verificationGasLimit`, `preVerificationGas`): `Promise`<[`UserOperation`](UserOperation.md)\>
+
+get the userOperation for change the threshold of the wallet
+
+**`Memberof`**
+
+BonusWalletLib
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `walletAddress` | `string` | the wallet contract address |
+| `etherProvider` | `BaseProvider` | the ethers.js provider e.g. ethers.provider |
+| `threshold` | `number` | new threshold |
+| `paymasterAndData` | `undefined` \| `string` | the paymaster address and data |
+| `maxFeePerGas` | [`NumberLike`](../modules.md#numberlike) | the max fee per gas |
+| `maxPriorityFeePerGas` | [`NumberLike`](../modules.md#numberlike) | the max priority fee per gas |
+| `callGasLimit` | [`NumberLike`](../modules.md#numberlike) | call gas limit |
+| `verificationGasLimit` | [`NumberLike`](../modules.md#numberlike) | verification gas limit |
+| `preVerificationGas` | [`NumberLike`](../modules.md#numberlike) | preVerification gas |
+
+#### Returns
+
+`Promise`<[`UserOperation`](UserOperation.md)\>
+
+The changeThresholdOp userOperation
+
+#### Defined in
+
+[wallet.ts:443](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L443)
+
+___
+
+### clearSessionOp
+
+▸ **clearSessionOp**(`walletAddress`, `etherProvider`, `paymasterAndData`, `maxFeePerGas`, `maxPriorityFeePerGas`, `callGasLimit`, `verificationGasLimit`, `preVerificationGas`): `Promise`<[`UserOperation`](UserOperation.md)\>
+
+get the userOperation for clear session
+
+**`Memberof`**
+
+BonusWalletLib
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `walletAddress` | `string` | the wallet contract address |
+| `etherProvider` | `BaseProvider` | the ethers.js provider e.g. ethers.provider |
+| `paymasterAndData` | `undefined` \| `string` | the paymaster address and data |
+| `maxFeePerGas` | [`NumberLike`](../modules.md#numberlike) | the max fee per gas |
+| `maxPriorityFeePerGas` | [`NumberLike`](../modules.md#numberlike) | the max priority fee per gas |
+| `callGasLimit` | [`NumberLike`](../modules.md#numberlike) | call gas limit |
+| `verificationGasLimit` | [`NumberLike`](../modules.md#numberlike) | verification gas limit |
+| `preVerificationGas` | [`NumberLike`](../modules.md#numberlike) | preVerification gas |
+
+#### Returns
+
+`Promise`<[`UserOperation`](UserOperation.md)\>
+
+The clearSessionOp userOperation
+
+#### Defined in
+
+[wallet.ts:682](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L682)
+
+___
+
+### disableModuleOp
+
+▸ **disableModuleOp**(`walletAddress`, `etherProvider`, `prevModule`, `module`, `paymasterAndData`, `maxFeePerGas`, `maxPriorityFeePerGas`, `callGasLimit`, `verificationGasLimit`, `preVerificationGas`): `Promise`<[`UserOperation`](UserOperation.md)\>
+
+get the userOperation for disable the module for the wallet
+
+**`Memberof`**
+
+BonusWalletLib
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `walletAddress` | `string` | the wallet contract address |
+| `etherProvider` | `BaseProvider` | the ethers.js provider e.g. ethers.provider |
+| `prevModule` | `string` | previous module in the modules linked list |
+| `module` | `string` | module to be removed |
+| `paymasterAndData` | `undefined` \| `string` | the paymaster address and data |
+| `maxFeePerGas` | [`NumberLike`](../modules.md#numberlike) | the max fee per gas |
+| `maxPriorityFeePerGas` | [`NumberLike`](../modules.md#numberlike) | the max priority fee per gas |
+| `callGasLimit` | [`NumberLike`](../modules.md#numberlike) | call gas limit |
+| `verificationGasLimit` | [`NumberLike`](../modules.md#numberlike) | verification gas limit |
+| `preVerificationGas` | [`NumberLike`](../modules.md#numberlike) | preVerification gas |
+
+#### Returns
+
+`Promise`<[`UserOperation`](UserOperation.md)\>
+
+The disableModuleOp userOperation
+
+#### Defined in
+
+[wallet.ts:563](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L563)
+
+___
+
+### enableModuleOp
+
+▸ **enableModuleOp**(`walletAddress`, `etherProvider`, `module`, `paymasterAndData`, `maxFeePerGas`, `maxPriorityFeePerGas`, `callGasLimit`, `verificationGasLimit`, `preVerificationGas`): `Promise`<[`UserOperation`](UserOperation.md)\>
+
+get the userOperation for enable the module for the wallet
+
+**`Memberof`**
+
+BonusWalletLib
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `walletAddress` | `string` | the wallet contract address |
+| `etherProvider` | `BaseProvider` | the ethers.js provider e.g. ethers.provider |
+| `module` | `string` | module to be whitelisted |
+| `paymasterAndData` | `undefined` \| `string` | the paymaster address and data |
+| `maxFeePerGas` | [`NumberLike`](../modules.md#numberlike) | the max fee per gas |
+| `maxPriorityFeePerGas` | [`NumberLike`](../modules.md#numberlike) | the max priority fee per gas |
+| `callGasLimit` | [`NumberLike`](../modules.md#numberlike) | call gas limit |
+| `verificationGasLimit` | [`NumberLike`](../modules.md#numberlike) | verification gas limit |
+| `preVerificationGas` | [`NumberLike`](../modules.md#numberlike) | preVerification gas |
+
+#### Returns
+
+`Promise`<[`UserOperation`](UserOperation.md)\>
+
+The enableModuleOp userOperation
+
+#### Defined in
+
+[wallet.ts:523](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L523)
+
+___
+
+### getEntryPoint
+
+▸ **getEntryPoint**(`walletAddress`, `etherProvider`): `Promise`<`number`\>
+
+get wallet entrypoint address
+
+**`Memberof`**
+
+BonusWalletLib
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `walletAddress` | `string` | the wallet contract address |
+| `etherProvider` | `BaseProvider` | the ethers.js provider e.g. ethers.provider |
+
+#### Returns
+
+`Promise`<`number`\>
+
+wallet entryPoint address
+
+#### Defined in
+
+[wallet.ts:820](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L820)
 
 ___
 
@@ -298,7 +525,38 @@ Init code data
 
 #### Defined in
 
-[wallet.ts:119](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/wallet.ts#L119)
+[wallet.ts:119](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L119)
+
+___
+
+### getModulesPaginated
+
+▸ **getModulesPaginated**(`start`, `pageSize`, `walletAddress`, `etherProvider`): `Promise`<`number`\>
+
+get if an array of modules enabled
+
+**`Memberof`**
+
+BonusWalletLib
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `start` | `string` | Start of the page. Has to be a module or start pointer (0x1 address) |
+| `pageSize` | `number` | Maximum number of modules that should be returned. Has to be > 0 |
+| `walletAddress` | `string` | the wallet contract address |
+| `etherProvider` | `BaseProvider` | the ethers.js provider e.g. ethers.provider |
+
+#### Returns
+
+`Promise`<`number`\>
+
+array Array of modules
+
+#### Defined in
+
+[wallet.ts:751](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L751)
 
 ___
 
@@ -328,7 +586,36 @@ the next nonce number
 
 #### Defined in
 
-[wallet.ts:390](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/wallet.ts#L390)
+[wallet.ts:919](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L919)
+
+___
+
+### getOwners
+
+▸ **getOwners**(`walletAddress`, `etherProvider`): `Promise`<`number`\>
+
+get a list of wallet owners
+
+**`Memberof`**
+
+BonusWalletLib
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `walletAddress` | `string` | the wallet contract address |
+| `etherProvider` | `BaseProvider` | the ethers.js provider e.g. ethers.provider |
+
+#### Returns
+
+`Promise`<`number`\>
+
+Array of wallet owners
+
+#### Defined in
+
+[wallet.ts:785](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L785)
 
 ___
 
@@ -351,7 +638,7 @@ ___
 
 #### Defined in
 
-[wallet.ts:300](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/wallet.ts#L300)
+[wallet.ts:830](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L830)
 
 ___
 
@@ -381,7 +668,7 @@ paymasterAndData(hex string)
 
 #### Defined in
 
-[wallet.ts:323](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/wallet.ts#L323)
+[wallet.ts:853](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L853)
 
 ___
 
@@ -415,7 +702,36 @@ setupCode
 
 #### Defined in
 
-[wallet.ts:95](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/wallet.ts#L95)
+[wallet.ts:95](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L95)
+
+___
+
+### getThreshold
+
+▸ **getThreshold**(`walletAddress`, `etherProvider`): `Promise`<`number`\>
+
+get the number of required confirmations for a wallet transaction aka the threshold
+
+**`Memberof`**
+
+BonusWalletLib
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `walletAddress` | `string` | the wallet contract address |
+| `etherProvider` | `BaseProvider` | the ethers.js provider e.g. ethers.provider |
+
+#### Returns
+
+`Promise`<`number`\>
+
+Threshold number
+
+#### Defined in
+
+[wallet.ts:768](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L768)
 
 ___
 
@@ -447,7 +763,97 @@ Wallet code
 
 #### Defined in
 
-[wallet.ts:142](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/wallet.ts#L142)
+[wallet.ts:142](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L142)
+
+___
+
+### isEnabledModule
+
+▸ **isEnabledModule**(`module`, `walletAddress`, `etherProvider`): `Promise`<`number`\>
+
+get if an module is enabled
+
+**`Memberof`**
+
+BonusWalletLib
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `module` | `string` | module address |
+| `walletAddress` | `string` | the wallet contract address |
+| `etherProvider` | `BaseProvider` | the ethers.js provider e.g. ethers.provider |
+
+#### Returns
+
+`Promise`<`number`\>
+
+True if the module is enabled
+
+#### Defined in
+
+[wallet.ts:714](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L714)
+
+___
+
+### isEnabledModules
+
+▸ **isEnabledModules**(`modules`, `walletAddress`, `etherProvider`): `Promise`<`number`\>
+
+get if an array of modules enabled
+
+**`Memberof`**
+
+BonusWalletLib
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `modules` | `string`[] | array of moduls |
+| `walletAddress` | `string` | the wallet contract address |
+| `etherProvider` | `BaseProvider` | the ethers.js provider e.g. ethers.provider |
+
+#### Returns
+
+`Promise`<`number`\>
+
+True if an array of modules enabled
+
+#### Defined in
+
+[wallet.ts:732](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L732)
+
+___
+
+### isOwner
+
+▸ **isOwner**(`owner`, `walletAddress`, `etherProvider`): `Promise`<`number`\>
+
+get if `owner` is an owner of the wallet
+
+**`Memberof`**
+
+BonusWalletLib
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `owner` | `string` | query address param is wallet owner |
+| `walletAddress` | `string` | the wallet contract address |
+| `etherProvider` | `BaseProvider` | the ethers.js provider e.g. ethers.provider |
+
+#### Returns
+
+`Promise`<`number`\>
+
+if owner is an owner of the wallet
+
+#### Defined in
+
+[wallet.ts:803](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L803)
 
 ___
 
@@ -482,7 +888,7 @@ The lockWallet userOperation
 
 #### Defined in
 
-[wallet.ts:239](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/wallet.ts#L239)
+[wallet.ts:241](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L241)
 
 ___
 
@@ -506,7 +912,156 @@ bytes32
 
 #### Defined in
 
-[wallet.ts:355](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/wallet.ts#L355)
+[wallet.ts:884](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L884)
+
+___
+
+### removeOwnerOp
+
+▸ **removeOwnerOp**(`walletAddress`, `etherProvider`, `prevOwner`, `owner`, `threshold`, `paymasterAndData`, `maxFeePerGas`, `maxPriorityFeePerGas`, `callGasLimit`, `verificationGasLimit`, `preVerificationGas`): `Promise`<[`UserOperation`](UserOperation.md)\>
+
+get the userOperation for remove the owner from the wallet and update threshold
+
+**`Memberof`**
+
+BonusWalletLib
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `walletAddress` | `string` | the wallet contract address |
+| `etherProvider` | `BaseProvider` | the ethers.js provider e.g. ethers.provider |
+| `prevOwner` | `string` | owner address that pointed to the owner to be removed in the linked list |
+| `owner` | `string` | owner address to be removed |
+| `threshold` | `number` | new threshold |
+| `paymasterAndData` | `undefined` \| `string` | the paymaster address and data |
+| `maxFeePerGas` | [`NumberLike`](../modules.md#numberlike) | the max fee per gas |
+| `maxPriorityFeePerGas` | [`NumberLike`](../modules.md#numberlike) | the max priority fee per gas |
+| `callGasLimit` | [`NumberLike`](../modules.md#numberlike) | call gas limit |
+| `verificationGasLimit` | [`NumberLike`](../modules.md#numberlike) | verification gas limit |
+| `preVerificationGas` | [`NumberLike`](../modules.md#numberlike) | preVerification gas |
+
+#### Returns
+
+`Promise`<[`UserOperation`](UserOperation.md)\>
+
+The removeOwnerOp userOperation
+
+#### Defined in
+
+[wallet.ts:359](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L359)
+
+___
+
+### setFallbackHandlerOp
+
+▸ **setFallbackHandlerOp**(`walletAddress`, `etherProvider`, `handler`, `paymasterAndData`, `maxFeePerGas`, `maxPriorityFeePerGas`, `callGasLimit`, `verificationGasLimit`, `preVerificationGas`): `Promise`<[`UserOperation`](UserOperation.md)\>
+
+get the userOperation for set fallback handler for the wallet
+
+**`Memberof`**
+
+BonusWalletLib
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `walletAddress` | `string` | the wallet contract address |
+| `etherProvider` | `BaseProvider` | the ethers.js provider e.g. ethers.provider |
+| `handler` | `string` | contract to handle fallback calls |
+| `paymasterAndData` | `undefined` \| `string` | the paymaster address and data |
+| `maxFeePerGas` | [`NumberLike`](../modules.md#numberlike) | the max fee per gas |
+| `maxPriorityFeePerGas` | [`NumberLike`](../modules.md#numberlike) | the max priority fee per gas |
+| `callGasLimit` | [`NumberLike`](../modules.md#numberlike) | call gas limit |
+| `verificationGasLimit` | [`NumberLike`](../modules.md#numberlike) | verification gas limit |
+| `preVerificationGas` | [`NumberLike`](../modules.md#numberlike) | preVerification gas |
+
+#### Returns
+
+`Promise`<[`UserOperation`](UserOperation.md)\>
+
+The setFallbackHandlerOp userOperation
+
+#### Defined in
+
+[wallet.ts:603](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L603)
+
+___
+
+### startSessionOp
+
+▸ **startSessionOp**(`walletAddress`, `etherProvider`, `sessionUser`, `duration`, `paymasterAndData`, `maxFeePerGas`, `maxPriorityFeePerGas`, `callGasLimit`, `verificationGasLimit`, `preVerificationGas`): `Promise`<[`UserOperation`](UserOperation.md)\>
+
+get the userOperation for start session for user
+
+**`Memberof`**
+
+BonusWalletLib
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `walletAddress` | `string` | the wallet contract address |
+| `etherProvider` | `BaseProvider` | the ethers.js provider e.g. ethers.provider |
+| `sessionUser` | `string` | use session for the user |
+| `duration` | `number` | session duration |
+| `paymasterAndData` | `undefined` \| `string` | the paymaster address and data |
+| `maxFeePerGas` | [`NumberLike`](../modules.md#numberlike) | the max fee per gas |
+| `maxPriorityFeePerGas` | [`NumberLike`](../modules.md#numberlike) | the max priority fee per gas |
+| `callGasLimit` | [`NumberLike`](../modules.md#numberlike) | call gas limit |
+| `verificationGasLimit` | [`NumberLike`](../modules.md#numberlike) | verification gas limit |
+| `preVerificationGas` | [`NumberLike`](../modules.md#numberlike) | preVerification gas |
+
+#### Returns
+
+`Promise`<[`UserOperation`](UserOperation.md)\>
+
+The startSessionOp userOperation
+
+#### Defined in
+
+[wallet.ts:643](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L643)
+
+___
+
+### swapOwnerOp
+
+▸ **swapOwnerOp**(`walletAddress`, `etherProvider`, `prevOwner`, `oldOwner`, `newOwner`, `paymasterAndData`, `maxFeePerGas`, `maxPriorityFeePerGas`, `callGasLimit`, `verificationGasLimit`, `preVerificationGas`): `Promise`<[`UserOperation`](UserOperation.md)\>
+
+get the userOperation for replace the owner in the wallet
+
+**`Memberof`**
+
+BonusWalletLib
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `walletAddress` | `string` | the wallet contract address |
+| `etherProvider` | `BaseProvider` | the ethers.js provider e.g. ethers.provider |
+| `prevOwner` | `string` | owner address that pointed to the owner to be removed in the linked list |
+| `oldOwner` | `string` | owner address to be replaced |
+| `newOwner` | `string` | new owner address |
+| `paymasterAndData` | `undefined` \| `string` | the paymaster address and data |
+| `maxFeePerGas` | [`NumberLike`](../modules.md#numberlike) | the max fee per gas |
+| `maxPriorityFeePerGas` | [`NumberLike`](../modules.md#numberlike) | the max priority fee per gas |
+| `callGasLimit` | [`NumberLike`](../modules.md#numberlike) | call gas limit |
+| `verificationGasLimit` | [`NumberLike`](../modules.md#numberlike) | verification gas limit |
+| `preVerificationGas` | [`NumberLike`](../modules.md#numberlike) | preVerification gas |
+
+#### Returns
+
+`Promise`<[`UserOperation`](UserOperation.md)\>
+
+The swapOwnerOp userOperation
+
+#### Defined in
+
+[wallet.ts:402](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L402)
 
 ___
 
@@ -541,4 +1096,41 @@ The unlockWallet userOperation
 
 #### Defined in
 
-[wallet.ts:276](https://github.com/study-core/bonus-wallet-js-sdk/blob/a6cc21a/src/wallet.ts#L276)
+[wallet.ts:278](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L278)
+
+___
+
+### withdrawDepositOp
+
+▸ **withdrawDepositOp**(`walletAddress`, `etherProvider`, `withdrawAddress`, `amount`, `paymasterAndData`, `maxFeePerGas`, `maxPriorityFeePerGas`, `callGasLimit`, `verificationGasLimit`, `preVerificationGas`): `Promise`<[`UserOperation`](UserOperation.md)\>
+
+get the userOperation for withdraw value from wallet's deposit
+
+**`Memberof`**
+
+BonusWalletLib
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `walletAddress` | `string` | the wallet contract address |
+| `etherProvider` | `BaseProvider` | the ethers.js provider e.g. ethers.provider |
+| `withdrawAddress` | `string` | target address to send to. |
+| `amount` | `number` | amount of deposit to withdraw |
+| `paymasterAndData` | `undefined` \| `string` | the paymaster address and data |
+| `maxFeePerGas` | [`NumberLike`](../modules.md#numberlike) | the max fee per gas |
+| `maxPriorityFeePerGas` | [`NumberLike`](../modules.md#numberlike) | the max priority fee per gas |
+| `callGasLimit` | [`NumberLike`](../modules.md#numberlike) | call gas limit |
+| `verificationGasLimit` | [`NumberLike`](../modules.md#numberlike) | verification gas limit |
+| `preVerificationGas` | [`NumberLike`](../modules.md#numberlike) | preVerification gas |
+
+#### Returns
+
+`Promise`<[`UserOperation`](UserOperation.md)\>
+
+The withdrawDepositOp userOperation
+
+#### Defined in
+
+[wallet.ts:483](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L483)
