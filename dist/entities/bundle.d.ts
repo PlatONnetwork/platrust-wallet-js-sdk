@@ -18,8 +18,7 @@ export declare class ApiTimeOut {
 export declare class Bundler {
     private _entryPoint;
     private _etherProvider;
-    private _bundlerApi?;
-    private _eoaPrivateKey?;
+    private _bundlerApiURL?;
     private _wallet?;
     private _entryPointContract?;
     private _timeout;
@@ -29,12 +28,12 @@ export declare class Bundler {
      * @constructor Bundler
      * @param {String} entryPoint the entry point address
      * @param {ethers.providers.BaseProvider} etherProvider the ethers.js provider e.g. ethers.provider
-     * @param {String} bundlerApiOrEOAPrivateKey the bundler api url or the EOA private key
+     * @param {String} bundlerApiURL the bundler api url or the EOA private key
      * @param {ApiTimeOut?} timeout the timeout
      * @returns {Bundler}
      * @memberof Bundler
      */
-    constructor(entryPoint: string, etherProvider: ethers.providers.BaseProvider, bundlerApiOrEOAPrivateKey: string, timeout?: ApiTimeOut);
+    constructor(entryPoint: string, etherProvider: ethers.providers.BaseProvider, bundlerApiURL: string, timeout?: ApiTimeOut);
     private rpcRequest;
     private _init;
     /**

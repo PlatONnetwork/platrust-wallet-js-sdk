@@ -26,36 +26,31 @@ class Bundler {
      * @constructor Bundler
      * @param {String} entryPoint the entry point address
      * @param {ethers.providers.BaseProvider} etherProvider the ethers.js provider e.g. ethers.provider
-     * @param {String} bundlerApiOrEOAPrivateKey the bundler api url or the EOA private key
+     * @param {String} bundlerApiURL the bundler api url or the EOA private key
      * @param {ApiTimeOut?} timeout the timeout
      * @returns {Bundler}
      * @memberof Bundler
      */
-    constructor(entryPoint, etherProvider, bundlerApiOrEOAPrivateKey, timeout) {
+    constructor(entryPoint, etherProvider, bundlerApiURL, timeout) {
         this._entryPoint = '';
         this._timeout = new ApiTimeOut();
         this._chainId = -1;
         this._init = false;
         this._entryPoint = entryPoint;
         this._etherProvider = etherProvider;
-        if (bundlerApiOrEOAPrivateKey.startsWith('0x')) {
-            this._eoaPrivateKey = bundlerApiOrEOAPrivateKey;
-        }
-        else {
-            this._bundlerApi = bundlerApiOrEOAPrivateKey;
-        }
+        this._bundlerApiURL = bundlerApiURL;
         if (timeout) {
             this._timeout = timeout;
         }
     }
     async rpcRequest(data, timeout) {
-        if (!this._bundlerApi) {
+        if (!this._bundlerApiURL) {
             throw new Error('bundlerApi is not set');
         }
         if (typeof timeout === 'undefined') {
             timeout = this._timeout.web3ApiRequestTimeout;
         }
-        let response = await httpRequest_1.HttpRequest.post(this._bundlerApi, data, timeout);
+        let response = await httpRequest_1.HttpRequest.post(this._bundlerApiURL, data, timeout);
         if (response) {
             const rpcResp = response;
             if (!rpcResp.error) {
@@ -86,7 +81,7 @@ class Bundler {
                 this._chainId = _network.chainId;
             }
             // test bundlerApi
-            if (this._bundlerApi) {
+            if (this._bundlerApiURL) {
                 const chainId = ethers_1.BigNumber.from(await this.platon_chainId()).toNumber();
                 if (chainId !== this._chainId) {
                     throw new Error('bundlerApi error');
@@ -96,12 +91,6 @@ class Bundler {
                     throw new Error('bundlerApi error');
                 }
             }
-            // if (this._eoaPrivateKey) {
-            //     this._wallet = new ethers.Wallet(this._eoaPrivateKey, this._etherProvider);
-            //     this._entryPointContract = new ethers.Contract(this._entryPoint, EntryPointContract.ABI, this._wallet);
-            // } else {
-            //     this._entryPointContract = new ethers.Contract(this._entryPoint, EntryPointContract.ABI);
-            // }
             this._entryPointContract = new ethers_1.ethers.Contract(this._entryPoint, entryPoint_1.EntryPointContract.ABI);
             this._init = true;
         }
@@ -115,7 +104,7 @@ class Bundler {
      * @memberof Bundler
      */
     async platon_chainId(timeout) {
-        if (this._bundlerApi) {
+        if (this._bundlerApiURL) {
             return this.rpcRequest({
                 jsonrpc: '2.0',
                 id: 1,
@@ -131,7 +120,7 @@ class Bundler {
      * @memberof Bundler
      */
     async platon_supportedEntryPoints(timeout) {
-        if (this._bundlerApi) {
+        if (this._bundlerApiURL) {
             return this.rpcRequest({
                 jsonrpc: '2.0',
                 id: 1,
@@ -148,7 +137,7 @@ class Bundler {
      * @memberof Bundler
      */
     async platon_sendUserOperation(userOp, timeout) {
-        if (this._bundlerApi) {
+        if (this._bundlerApiURL) {
             return this.rpcRequest({
                 jsonrpc: '2.0',
                 id: 1,
@@ -176,7 +165,7 @@ class Bundler {
             verificationGas: '0x0',
             callGasLimit: '0x0'
         };
-        if (this._bundlerApi) {
+        if (this._bundlerApiURL) {
             const _estimateUserOpGasResult = await this.rpcRequest({
                 jsonrpc: '2.0',
                 id: 1,
@@ -209,7 +198,7 @@ class Bundler {
      * @memberof Bundler
      */
     async platon_getUserOperationReceipt(userOpHash, timeout) {
-        if (this._bundlerApi) {
+        if (this._bundlerApiURL) {
             return this.rpcRequest({
                 jsonrpc: '2.0',
                 id: 1,
@@ -228,7 +217,7 @@ class Bundler {
      * @memberof Bundler
      */
     async platon_getUserOperationByHash(userOpHash, timeout) {
-        if (this._bundlerApi) {
+        if (this._bundlerApiURL) {
             return this.rpcRequest({
                 jsonrpc: '2.0',
                 id: 1,

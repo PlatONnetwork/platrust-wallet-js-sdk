@@ -5,6 +5,7 @@ import { UserOperationReceipt, ParsedTransaction, Logs } from './types/userOpera
 import { Operation } from './types/operation';
 import { ApproveToken } from './types/approveToken';
 import { Bundler } from './entities/bundle';
+import { Paymaster } from './entities/paymaster';
 import { SignatureMode, encodeSignature, decodeSignature, packSignatureHash } from './utils/signatures';
 import { NumberLike } from './utils/numberLike';
 import { signMessage, recoverAddress } from './utils/personalSign';
@@ -12,6 +13,8 @@ import { signMessage, recoverAddress } from './utils/personalSign';
  * @module Bonuswalletlib
  * @description BonusWalletLib
  * @property {BonusWalletLib} BonusWalletLib bonuswallet lib
+ * @property {Bundler} Bundler bundler related interface
+ * @property {Paymaster} Paymaster paymaster related interface
  * @property {UserOperation} UserOperation user operation
  * @property {Result} Result result interface
  * @property {ValidationResult} Validation result interface
@@ -31,4 +34,4 @@ import { signMessage, recoverAddress } from './utils/personalSign';
  * @property {signMessage} Sign message method
  * @property {recoverAddress} Recover address from signature
  */
-export { BonusWalletLib, Bundler, UserOperation, SignatureMode, encodeSignature, decodeSignature, packSignatureHash, ParsedTransaction, Operation, Result, ValidationResult, StakeInfo, ReturnInfo, FailedOp, ExecutionResult, UserOperationReceipt, Logs, ApproveToken, NumberLike, signMessage, recoverAddress };
+export { BonusWalletLib, Bundler, Paymaster, UserOperation, SignatureMode, encodeSignature, decodeSignature, packSignatureHash, ParsedTransaction, Operation, Result, ValidationResult, StakeInfo, ReturnInfo, FailedOp, ExecutionResult, UserOperationReceipt, Logs, ApproveToken, NumberLike, signMessage, recoverAddress };

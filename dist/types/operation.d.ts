@@ -1,5 +1,5 @@
-declare const Operation: {
-    CALL: string;
-    DElEGATECALL: string;
-};
+declare enum Operation {
+    CALL = 0,
+    DElEGATECALL = 1
+}
 export { Operation };

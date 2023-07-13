@@ -1,10 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ERC1155 = exports.ERC721 = exports.ERC20 = exports.executeBatchFromModul = exports.executeFromModule = void 0;
+exports.ERC1155 = exports.ERC721 = exports.ERC20 = exports.executeBatchFromModuleReturnData = exports.executeBatchFromModule = exports.executeFromModuleReturnData = exports.executeFromModule = void 0;
 const executeFromModule = ["function executeFromModule(bytes memory _data)"];
 exports.executeFromModule = executeFromModule;
-const executeBatchFromModul = ["function executeBatchFromModul(bytes[] calldata _data)"];
-exports.executeBatchFromModul = executeBatchFromModul;
+const executeFromModuleReturnData = ["function executeFromModuleReturnData(bytes memory _data)"];
+exports.executeFromModuleReturnData = executeFromModuleReturnData;
+const executeBatchFromModule = ["function executeBatchFromModule(bytes[] calldata _data)"];
+exports.executeBatchFromModule = executeBatchFromModule;
+const executeBatchFromModuleReturnData = ["function executeBatchFromModuleReturnData(bytes[] calldata _data)"];
+exports.executeBatchFromModuleReturnData = executeBatchFromModuleReturnData;
 const ERC20 = [
     {
         "constant": true,

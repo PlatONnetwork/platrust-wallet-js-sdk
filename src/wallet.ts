@@ -711,7 +711,7 @@ export class BonusWalletLib {
      * @returns { Boolean } True if the module is enabled
      * @memberof BonusWalletLib
      */
-    public async isEnabledModule(module: string, walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<number> {
+    public async isEnabledModule(module: string, walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<boolean> {
         try {
             const contract = new ethers.Contract(walletAddress, BaseWalletContract.ABI, etherProvider);
             const enabled = await contract.isEnabledModule(module);
@@ -729,7 +729,7 @@ export class BonusWalletLib {
      * @returns { Boolean } True if an array of modules enabled
      * @memberof BonusWalletLib
      */
-    public async isEnabledModules(modules: string[], walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<number> {
+    public async isEnabledModules(modules: string[], walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<boolean> {
         try {
             const contract = new ethers.Contract(walletAddress, BaseWalletContract.ABI, etherProvider);
             const enabled = await contract.isEnabledModules(modules);
@@ -748,7 +748,7 @@ export class BonusWalletLib {
      * @returns { Array } array Array of modules
      * @memberof BonusWalletLib
      */
-    public async getModulesPaginated(start: string, pageSize: number, walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<number> {
+    public async getModulesPaginated(start: string, pageSize: number, walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<any> {
         try {
             const contract = new ethers.Contract(walletAddress, BaseWalletContract.ABI, etherProvider);
             const modules = await contract.getModulesPaginated(start, pageSize);
@@ -782,7 +782,7 @@ export class BonusWalletLib {
      * @returns { Array } Array of wallet owners
      * @memberof BonusWalletLib
      */
-    public async getOwners(walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<number> {
+    public async getOwners(walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<Array<string>> {
         try {
             const contract = new ethers.Contract(walletAddress, BaseWalletContract.ABI, etherProvider);
             const owners = await contract.getOwners();
@@ -800,7 +800,7 @@ export class BonusWalletLib {
      * @returns { Boolean } if owner is an owner of the wallet
      * @memberof BonusWalletLib
      */
-    public async isOwner(owner: string, walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<number> {
+    public async isOwner(owner: string, walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<boolean> {
         try {
             const contract = new ethers.Contract(walletAddress, BaseWalletContract.ABI, etherProvider);
             const isOwner = await contract.isOwner(owner);
@@ -817,7 +817,7 @@ export class BonusWalletLib {
      * @returns { String } wallet entryPoint address
      * @memberof BonusWalletLib
      */
-    public async getEntryPoint(walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<number> {
+    public async getEntryPoint(walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<string> {
         try {
             const contract = new ethers.Contract(walletAddress, BaseWalletContract.ABI, etherProvider);
             const entryPoint = await contract.entryPoint();

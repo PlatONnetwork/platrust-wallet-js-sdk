@@ -71,7 +71,7 @@ BonusWalletLib
 
 #### Defined in
 
-[wallet.ts:37](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L37)
+[wallet.ts:37](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L37)
 
 ## Properties
 
@@ -81,7 +81,7 @@ BonusWalletLib
 
 #### Defined in
 
-[wallet.ts:71](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L71)
+[wallet.ts:71](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L71)
 
 ___
 
@@ -91,7 +91,7 @@ ___
 
 #### Defined in
 
-[wallet.ts:72](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L72)
+[wallet.ts:72](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L72)
 
 ___
 
@@ -110,7 +110,7 @@ ___
 
 #### Defined in
 
-[wallet.ts:74](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L74)
+[wallet.ts:74](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L74)
 
 ___
 
@@ -120,7 +120,7 @@ ___
 
 #### Defined in
 
-[wallet.ts:20](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L20)
+[wallet.ts:20](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L20)
 
 ___
 
@@ -138,7 +138,7 @@ ___
 
 #### Defined in
 
-[wallet.ts:64](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L64)
+[wallet.ts:64](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L64)
 
 ## Accessors
 
@@ -156,7 +156,7 @@ address
 
 #### Defined in
 
-[wallet.ts:57](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L57)
+[wallet.ts:57](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L57)
 
 ## Methods
 
@@ -193,7 +193,7 @@ The activate userOperation
 
 #### Defined in
 
-[wallet.ts:204](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L204)
+[wallet.ts:204](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L204)
 
 ___
 
@@ -230,7 +230,7 @@ The addOwnerWithThresholdOp userOperation
 
 #### Defined in
 
-[wallet.ts:317](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L317)
+[wallet.ts:317](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L317)
 
 ___
 
@@ -261,7 +261,7 @@ the wallet address
 
 #### Defined in
 
-[wallet.ts:169](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L169)
+[wallet.ts:169](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L169)
 
 ___
 
@@ -291,7 +291,7 @@ wallet address
 
 #### Defined in
 
-[wallet.ts:868](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L868)
+[wallet.ts:868](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L868)
 
 ___
 
@@ -321,7 +321,7 @@ the wallet address
 
 #### Defined in
 
-[wallet.ts:899](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L899)
+[wallet.ts:899](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L899)
 
 ___
 
@@ -357,7 +357,7 @@ The changeThresholdOp userOperation
 
 #### Defined in
 
-[wallet.ts:443](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L443)
+[wallet.ts:443](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L443)
 
 ___
 
@@ -392,7 +392,7 @@ The clearSessionOp userOperation
 
 #### Defined in
 
-[wallet.ts:682](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L682)
+[wallet.ts:682](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L682)
 
 ___
 
@@ -429,7 +429,7 @@ The disableModuleOp userOperation
 
 #### Defined in
 
-[wallet.ts:563](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L563)
+[wallet.ts:563](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L563)
 
 ___
 
@@ -465,13 +465,13 @@ The enableModuleOp userOperation
 
 #### Defined in
 
-[wallet.ts:523](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L523)
+[wallet.ts:523](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L523)
 
 ___
 
 ### getEntryPoint
 
-▸ **getEntryPoint**(`walletAddress`, `etherProvider`): `Promise`<`number`\>
+▸ **getEntryPoint**(`walletAddress`, `etherProvider`): `Promise`<`string`\>
 
 get wallet entrypoint address
 
@@ -488,13 +488,13 @@ BonusWalletLib
 
 #### Returns
 
-`Promise`<`number`\>
+`Promise`<`string`\>
 
 wallet entryPoint address
 
 #### Defined in
 
-[wallet.ts:820](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L820)
+[wallet.ts:820](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L820)
 
 ___
 
@@ -525,13 +525,13 @@ Init code data
 
 #### Defined in
 
-[wallet.ts:119](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L119)
+[wallet.ts:119](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L119)
 
 ___
 
 ### getModulesPaginated
 
-▸ **getModulesPaginated**(`start`, `pageSize`, `walletAddress`, `etherProvider`): `Promise`<`number`\>
+▸ **getModulesPaginated**(`start`, `pageSize`, `walletAddress`, `etherProvider`): `Promise`<`any`\>
 
 get if an array of modules enabled
 
@@ -550,13 +550,13 @@ BonusWalletLib
 
 #### Returns
 
-`Promise`<`number`\>
+`Promise`<`any`\>
 
 array Array of modules
 
 #### Defined in
 
-[wallet.ts:751](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L751)
+[wallet.ts:751](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L751)
 
 ___
 
@@ -586,13 +586,13 @@ the next nonce number
 
 #### Defined in
 
-[wallet.ts:919](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L919)
+[wallet.ts:919](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L919)
 
 ___
 
 ### getOwners
 
-▸ **getOwners**(`walletAddress`, `etherProvider`): `Promise`<`number`\>
+▸ **getOwners**(`walletAddress`, `etherProvider`): `Promise`<`string`[]\>
 
 get a list of wallet owners
 
@@ -609,13 +609,13 @@ BonusWalletLib
 
 #### Returns
 
-`Promise`<`number`\>
+`Promise`<`string`[]\>
 
 Array of wallet owners
 
 #### Defined in
 
-[wallet.ts:785](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L785)
+[wallet.ts:785](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L785)
 
 ___
 
@@ -638,7 +638,7 @@ ___
 
 #### Defined in
 
-[wallet.ts:830](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L830)
+[wallet.ts:830](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L830)
 
 ___
 
@@ -668,7 +668,7 @@ paymasterAndData(hex string)
 
 #### Defined in
 
-[wallet.ts:853](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L853)
+[wallet.ts:853](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L853)
 
 ___
 
@@ -702,7 +702,7 @@ setupCode
 
 #### Defined in
 
-[wallet.ts:95](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L95)
+[wallet.ts:95](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L95)
 
 ___
 
@@ -731,7 +731,7 @@ Threshold number
 
 #### Defined in
 
-[wallet.ts:768](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L768)
+[wallet.ts:768](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L768)
 
 ___
 
@@ -763,13 +763,13 @@ Wallet code
 
 #### Defined in
 
-[wallet.ts:142](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L142)
+[wallet.ts:142](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L142)
 
 ___
 
 ### isEnabledModule
 
-▸ **isEnabledModule**(`module`, `walletAddress`, `etherProvider`): `Promise`<`number`\>
+▸ **isEnabledModule**(`module`, `walletAddress`, `etherProvider`): `Promise`<`boolean`\>
 
 get if an module is enabled
 
@@ -787,19 +787,19 @@ BonusWalletLib
 
 #### Returns
 
-`Promise`<`number`\>
+`Promise`<`boolean`\>
 
 True if the module is enabled
 
 #### Defined in
 
-[wallet.ts:714](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L714)
+[wallet.ts:714](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L714)
 
 ___
 
 ### isEnabledModules
 
-▸ **isEnabledModules**(`modules`, `walletAddress`, `etherProvider`): `Promise`<`number`\>
+▸ **isEnabledModules**(`modules`, `walletAddress`, `etherProvider`): `Promise`<`boolean`\>
 
 get if an array of modules enabled
 
@@ -817,19 +817,19 @@ BonusWalletLib
 
 #### Returns
 
-`Promise`<`number`\>
+`Promise`<`boolean`\>
 
 True if an array of modules enabled
 
 #### Defined in
 
-[wallet.ts:732](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L732)
+[wallet.ts:732](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L732)
 
 ___
 
 ### isOwner
 
-▸ **isOwner**(`owner`, `walletAddress`, `etherProvider`): `Promise`<`number`\>
+▸ **isOwner**(`owner`, `walletAddress`, `etherProvider`): `Promise`<`boolean`\>
 
 get if `owner` is an owner of the wallet
 
@@ -847,13 +847,13 @@ BonusWalletLib
 
 #### Returns
 
-`Promise`<`number`\>
+`Promise`<`boolean`\>
 
 if owner is an owner of the wallet
 
 #### Defined in
 
-[wallet.ts:803](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L803)
+[wallet.ts:803](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L803)
 
 ___
 
@@ -888,7 +888,7 @@ The lockWallet userOperation
 
 #### Defined in
 
-[wallet.ts:241](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L241)
+[wallet.ts:241](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L241)
 
 ___
 
@@ -912,7 +912,7 @@ bytes32
 
 #### Defined in
 
-[wallet.ts:884](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L884)
+[wallet.ts:884](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L884)
 
 ___
 
@@ -950,7 +950,7 @@ The removeOwnerOp userOperation
 
 #### Defined in
 
-[wallet.ts:359](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L359)
+[wallet.ts:359](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L359)
 
 ___
 
@@ -986,7 +986,7 @@ The setFallbackHandlerOp userOperation
 
 #### Defined in
 
-[wallet.ts:603](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L603)
+[wallet.ts:603](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L603)
 
 ___
 
@@ -1023,7 +1023,7 @@ The startSessionOp userOperation
 
 #### Defined in
 
-[wallet.ts:643](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L643)
+[wallet.ts:643](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L643)
 
 ___
 
@@ -1061,7 +1061,7 @@ The swapOwnerOp userOperation
 
 #### Defined in
 
-[wallet.ts:402](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L402)
+[wallet.ts:402](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L402)
 
 ___
 
@@ -1096,7 +1096,7 @@ The unlockWallet userOperation
 
 #### Defined in
 
-[wallet.ts:278](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L278)
+[wallet.ts:278](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L278)
 
 ___
 
@@ -1133,4 +1133,4 @@ The withdrawDepositOp userOperation
 
 #### Defined in
 
-[wallet.ts:483](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/wallet.ts#L483)
+[wallet.ts:483](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/wallet.ts#L483)

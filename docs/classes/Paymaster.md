@@ -51,7 +51,7 @@ Paymaster
 
 #### Defined in
 
-[entities/paymaster.ts:22](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/paymaster.ts#L22)
+[entities/paymaster.ts:22](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/entities/paymaster.ts#L22)
 
 ## Properties
 
@@ -61,7 +61,7 @@ Paymaster
 
 #### Defined in
 
-[entities/paymaster.ts:11](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/paymaster.ts#L11)
+[entities/paymaster.ts:11](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/entities/paymaster.ts#L11)
 
 ___
 
@@ -71,7 +71,7 @@ ___
 
 #### Defined in
 
-[entities/paymaster.ts:10](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/paymaster.ts#L10)
+[entities/paymaster.ts:10](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/entities/paymaster.ts#L10)
 
 ## Methods
 
@@ -100,7 +100,7 @@ transaction receipt
 
 #### Defined in
 
-[entities/paymaster.ts:86](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/paymaster.ts#L86)
+[entities/paymaster.ts:86](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/entities/paymaster.ts#L86)
 
 ___
 
@@ -129,7 +129,7 @@ transaction receipt
 
 #### Defined in
 
-[entities/paymaster.ts:65](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/paymaster.ts#L65)
+[entities/paymaster.ts:65](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/entities/paymaster.ts#L65)
 
 ___
 
@@ -157,7 +157,7 @@ transaction receipt
 
 #### Defined in
 
-[entities/paymaster.ts:138](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/paymaster.ts#L138)
+[entities/paymaster.ts:138](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/entities/paymaster.ts#L138)
 
 ___
 
@@ -179,7 +179,7 @@ entrypoint address
 
 #### Defined in
 
-[entities/paymaster.ts:53](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/paymaster.ts#L53)
+[entities/paymaster.ts:53](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/entities/paymaster.ts#L53)
 
 ___
 
@@ -201,7 +201,7 @@ deposit amount
 
 #### Defined in
 
-[entities/paymaster.ts:147](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/paymaster.ts#L147)
+[entities/paymaster.ts:147](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/entities/paymaster.ts#L147)
 
 ___
 
@@ -230,7 +230,7 @@ exchange price
 
 #### Defined in
 
-[entities/paymaster.ts:158](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/paymaster.ts#L158)
+[entities/paymaster.ts:158](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/entities/paymaster.ts#L158)
 
 ___
 
@@ -258,7 +258,7 @@ supported token address list
 
 #### Defined in
 
-[entities/paymaster.ts:33](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/paymaster.ts#L33)
+[entities/paymaster.ts:33](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/entities/paymaster.ts#L33)
 
 ___
 
@@ -286,7 +286,7 @@ transaction receipt
 
 #### Defined in
 
-[entities/paymaster.ts:75](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/paymaster.ts#L75)
+[entities/paymaster.ts:75](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/entities/paymaster.ts#L75)
 
 ___
 
@@ -308,7 +308,7 @@ transaction receipt
 
 #### Defined in
 
-[entities/paymaster.ts:95](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/paymaster.ts#L95)
+[entities/paymaster.ts:95](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/entities/paymaster.ts#L95)
 
 ___
 
@@ -336,7 +336,7 @@ transaction receipt
 
 #### Defined in
 
-[entities/paymaster.ts:105](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/paymaster.ts#L105)
+[entities/paymaster.ts:105](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/entities/paymaster.ts#L105)
 
 ___
 
@@ -365,7 +365,7 @@ transaction receipt
 
 #### Defined in
 
-[entities/paymaster.ts:128](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/paymaster.ts#L128)
+[entities/paymaster.ts:128](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/entities/paymaster.ts#L128)
 
 ___
 
@@ -395,4 +395,4 @@ transaction receipt
 
 #### Defined in
 
-[entities/paymaster.ts:117](https://github.com/study-core/bonus-wallet-js-sdk/blob/030b2aa/src/entities/paymaster.ts#L117)
+[entities/paymaster.ts:117](https://github.com/study-core/bonus-wallet-js-sdk/blob/55d69f8/src/entities/paymaster.ts#L117)

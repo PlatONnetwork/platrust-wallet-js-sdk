@@ -8,7 +8,7 @@
  * @LastEditTime: 2023-04-24 21:05:35
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.recoverAddress = exports.signMessage = exports.Operation = exports.packSignatureHash = exports.decodeSignature = exports.encodeSignature = exports.SignatureMode = exports.UserOperation = exports.Bundler = exports.BonusWalletLib = void 0;
+exports.recoverAddress = exports.signMessage = exports.Operation = exports.packSignatureHash = exports.decodeSignature = exports.encodeSignature = exports.SignatureMode = exports.UserOperation = exports.Paymaster = exports.Bundler = exports.BonusWalletLib = void 0;
 const wallet_1 = require("./wallet");
 Object.defineProperty(exports, "BonusWalletLib", { enumerable: true, get: function () { return wallet_1.BonusWalletLib; } });
 const userOperation_1 = require("./entities/userOperation");
@@ -17,6 +17,8 @@ const operation_1 = require("./types/operation");
 Object.defineProperty(exports, "Operation", { enumerable: true, get: function () { return operation_1.Operation; } });
 const bundle_1 = require("./entities/bundle");
 Object.defineProperty(exports, "Bundler", { enumerable: true, get: function () { return bundle_1.Bundler; } });
+const paymaster_1 = require("./entities/paymaster");
+Object.defineProperty(exports, "Paymaster", { enumerable: true, get: function () { return paymaster_1.Paymaster; } });
 const signatures_1 = require("./utils/signatures");
 Object.defineProperty(exports, "SignatureMode", { enumerable: true, get: function () { return signatures_1.SignatureMode; } });
 Object.defineProperty(exports, "encodeSignature", { enumerable: true, get: function () { return signatures_1.encodeSignature; } });

@@ -1,1 +1,1 @@
-{"version":3,"file":"operation.js","sourceRoot":"","sources":["../../src/types/operation.ts"],"names":[],"mappings":";;;AAAA,MAAM,SAAS,GAAG;IACd,IAAI,EAAE,MAAM;IACZ,YAAY,EAAE,cAAc;CAC/B,CAAA;AAEQ,8BAAS"}
+{"version":3,"file":"operation.js","sourceRoot":"","sources":["../../src/types/operation.ts"],"names":[],"mappings":";;;AAAA,IAAK,SAGJ;AAHD,WAAK,SAAS;IACV,yCAAI,CAAA;IACJ,yDAAY,CAAA;AAChB,CAAC,EAHI,SAAS,KAAT,SAAS,QAGb;AAEQ,8BAAS"}
