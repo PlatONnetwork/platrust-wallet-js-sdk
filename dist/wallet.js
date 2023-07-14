@@ -582,6 +582,75 @@ class BonusWalletLib {
             throw error;
         }
     }
+    /**
+     * Check if a wallet is locked
+     * @param { String } walletAddress the wallet contract address
+     * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
+     * @returns { Boolean } Return true if a wallet is locked
+     * @memberof BonusWalletLib
+     */
+    async isLocked(walletAddress, etherProvider) {
+        try {
+            const contract = new ethers_1.ethers.Contract(walletAddress, baseWallet_1.BaseWalletContract.ABI, etherProvider);
+            const isLocked = await contract.isLocked();
+            return isLocked;
+        }
+        catch (error) {
+            throw error;
+        }
+    }
+    /**
+     * get the release time of a wallet lock
+     * @param { String } walletAddress the wallet contract address
+     * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
+     * @returns { number } Return the release time of a wallet lock or 0 if the wallet is unlocked
+     * @memberof BonusWalletLib
+     */
+    async getLock(walletAddress, etherProvider) {
+        try {
+            const contract = new ethers_1.ethers.Contract(walletAddress, baseWallet_1.BaseWalletContract.ABI, etherProvider);
+            const lockTime = await contract.getLock();
+            return lockTime;
+        }
+        catch (error) {
+            throw error;
+        }
+    }
+    /**
+     * Deposit more funds for this wallet in the entryPoint
+     * @param { String } walletAddress the wallet contract address
+     * @param {ethers.Wallet} signer the ethers.js wallet of call deposit
+     * @param { String } value add deposit value, unit is lat
+     * @returns { object } Return deposit transaction receipt
+     * @memberof BonusWalletLib
+     */
+    async addDeposit(walletAddress, signer, value) {
+        try {
+            const contract = new ethers_1.ethers.Contract(walletAddress, baseWallet_1.BaseWalletContract.ABI, signer);
+            const tx = await contract.addDeposit({ value: ethers_1.ethers.utils.parseEther(value) });
+            return tx;
+        }
+        catch (error) {
+            throw error;
+        }
+    }
+    /**
+     * get the current wallet deposit in the entrypoint
+     * @param { String } walletAddress the wallet contract address
+     * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
+     * @returns { number } Return Amount of deposit
+     * @memberof BonusWalletLib
+     */
+    async getDeposit(walletAddress, etherProvider) {
+        try {
+            const contract = new ethers_1.ethers.Contract(walletAddress, baseWallet_1.BaseWalletContract.ABI, etherProvider);
+            const deposit = await contract.getDeposit();
+            return deposit;
+        }
+        catch (error) {
+            throw error;
+        }
+    }
     getPackedInitCodeUsingWalletFactory(walletFactory, walletLogic, initializer, salt) {
         const initCode = this.getInitCode(walletFactory, walletLogic, initializer, salt);
         // const packedInitCode = ethers.utils.solidityPack(

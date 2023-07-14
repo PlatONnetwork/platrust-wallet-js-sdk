@@ -356,6 +356,39 @@ export declare class BonusWalletLib {
      * @memberof BonusWalletLib
      */
     getEntryPoint(walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<string>;
+    /**
+     * Check if a wallet is locked
+     * @param { String } walletAddress the wallet contract address
+     * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
+     * @returns { Boolean } Return true if a wallet is locked
+     * @memberof BonusWalletLib
+     */
+    isLocked(walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<boolean>;
+    /**
+     * get the release time of a wallet lock
+     * @param { String } walletAddress the wallet contract address
+     * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
+     * @returns { number } Return the release time of a wallet lock or 0 if the wallet is unlocked
+     * @memberof BonusWalletLib
+     */
+    getLock(walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<number>;
+    /**
+     * Deposit more funds for this wallet in the entryPoint
+     * @param { String } walletAddress the wallet contract address
+     * @param {ethers.Wallet} signer the ethers.js wallet of call deposit
+     * @param { String } value add deposit value, unit is lat
+     * @returns { object } Return deposit transaction receipt
+     * @memberof BonusWalletLib
+     */
+    addDeposit(walletAddress: string, signer: ethers.Wallet, value: string): Promise<any>;
+    /**
+     * get the current wallet deposit in the entrypoint
+     * @param { String } walletAddress the wallet contract address
+     * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
+     * @returns { number } Return Amount of deposit
+     * @memberof BonusWalletLib
+     */
+    getDeposit(walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<number>;
     private getPackedInitCodeUsingWalletFactory;
     /**
      * get paymaster data
