@@ -329,38 +329,6 @@ export class UserOperation {
     }
 
     /**
-     * @description get the paymaster sign hash
-     * @returns { string } the paymaster sign hash
-     * @memberof UserOperation
-     */
-    public payMasterSignHash(): string {
-        return keccak256(defaultAbiCoder.encode([
-            'address', // sender
-            'uint256', // nonce
-            'bytes32', // initCode
-            'bytes32', // callData
-            'uint256', // callGas
-            'uint', // verificationGas
-            'uint', // preVerificationGas
-            'uint256', // maxFeePerGas
-            'uint256', // maxPriorityFeePerGas
-            'address', // paymaster
-        ], [
-            this.sender,
-            this.nonce,
-            keccak256(this.initCode),
-            keccak256(this.callData),
-            this.callGasLimit,
-            this.verificationGasLimit,
-            this.preVerificationGas,
-            this.maxFeePerGas,
-            this.maxPriorityFeePerGas,
-            this.paymasterAndData.substring(0, 42),
-        ]))
-    }
-
-
-    /**
      *
      *
      * @param { string } signature
@@ -429,21 +397,21 @@ export class UserOperation {
         return this.encode(typevalues, forSignature)
     }
 
-    /**
-     * @description get the UserOpHash (userOp hash)
-     * @param { string } entryPointAddress the entry point address
-     * @param { number } chainId the chain id
-     * @returns { string } the UserOpHash (userOp hash)
-     * @memberof UserOperation
-     */
-    public getUserOpHash(entryPointAddress: string, chainId: number): string {
-        // keccak256(abi.encode(userOp.hash(), address(this), block.chainid));
-        const userOpHash = keccak256(this.packUserOp(true));
-        const enc = defaultAbiCoder.encode(
-            ['bytes32', 'address', 'uint256'],
-            ["0x39aabc29008478ea05c3ca14ac9daa92bd321d6a46e8347620a7c04f67820621", entryPointAddress, chainId])
-        return keccak256(enc)
-    }
+    // /**
+    //  * @description get the UserOpHash (userOp hash)
+    //  * @param { string } entryPointAddress the entry point address
+    //  * @param { number } chainId the chain id
+    //  * @returns { string } the UserOpHash (userOp hash)
+    //  * @memberof UserOperation
+    //  */
+    // public getUserOpHash(entryPointAddress: string, chainId: number): string {
+    //     // keccak256(abi.encode(userOp.hash(), address(this), block.chainid));
+    //     const userOpHash = keccak256(this.packUserOp(true));
+    //     const enc = defaultAbiCoder.encode(
+    //         ['bytes32', 'address', 'uint256'],
+    //         ["0x39aabc29008478ea05c3ca14ac9daa92bd321d6a46e8347620a7c04f67820621", entryPointAddress, chainId])
+    //     return keccak256(enc)
+    // }
 
     /**
      * @description get the UserOpHash (userOp hash)

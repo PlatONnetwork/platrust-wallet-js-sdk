@@ -51,7 +51,7 @@ number like type
 
 #### Defined in
 
-[utils/numberLike.ts:7](https://github.com/study-core/bonus-wallet-js-sdk/blob/1ac8967/src/utils/numberLike.ts#L7)
+[utils/numberLike.ts:7](https://github.com/study-core/bonus-wallet-js-sdk/blob/a32b79e/src/utils/numberLike.ts#L7)
 
 ## Functions
 
@@ -80,7 +80,7 @@ number like type
 
 #### Defined in
 
-[utils/signatures.ts:117](https://github.com/study-core/bonus-wallet-js-sdk/blob/1ac8967/src/utils/signatures.ts#L117)
+[utils/signatures.ts:117](https://github.com/study-core/bonus-wallet-js-sdk/blob/a32b79e/src/utils/signatures.ts#L117)
 
 ___
 
@@ -106,7 +106,7 @@ ___
 
 #### Defined in
 
-[utils/signatures.ts:57](https://github.com/study-core/bonus-wallet-js-sdk/blob/1ac8967/src/utils/signatures.ts#L57)
+[utils/signatures.ts:57](https://github.com/study-core/bonus-wallet-js-sdk/blob/a32b79e/src/utils/signatures.ts#L57)
 
 ___
 
@@ -130,7 +130,7 @@ ___
 
 #### Defined in
 
-[utils/signatures.ts:27](https://github.com/study-core/bonus-wallet-js-sdk/blob/1ac8967/src/utils/signatures.ts#L27)
+[utils/signatures.ts:27](https://github.com/study-core/bonus-wallet-js-sdk/blob/a32b79e/src/utils/signatures.ts#L27)
 
 ___
 
@@ -151,7 +151,7 @@ ___
 
 #### Defined in
 
-[utils/personalSign.ts:13](https://github.com/study-core/bonus-wallet-js-sdk/blob/1ac8967/src/utils/personalSign.ts#L13)
+[utils/personalSign.ts:13](https://github.com/study-core/bonus-wallet-js-sdk/blob/a32b79e/src/utils/personalSign.ts#L13)
 
 ___
 
@@ -172,4 +172,4 @@ ___
 
 #### Defined in
 
-[utils/personalSign.ts:4](https://github.com/study-core/bonus-wallet-js-sdk/blob/1ac8967/src/utils/personalSign.ts#L4)
+[utils/personalSign.ts:4](https://github.com/study-core/bonus-wallet-js-sdk/blob/a32b79e/src/utils/personalSign.ts#L4)

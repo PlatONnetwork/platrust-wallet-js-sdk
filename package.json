@@ -7,7 +7,7 @@
     "start": "ts-node src/app.ts",
     "build": "rm -rf dist && tsc --project tsconfig.json",
     "test": "mocha",
-    "docs": "npx typedoc src/index.ts"
+    "docs": "npx typedoc --plugin typedoc-plugin-markdown --entryPoints ./src/index.ts --out ./docs"
   },
   "repository": {
     "type": "git",
