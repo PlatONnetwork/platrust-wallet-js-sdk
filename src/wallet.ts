@@ -249,9 +249,9 @@ export class BonusWalletLib {
         const nonce = await this.getNonce(walletAddress, etherProvider);
         const lockOp = new UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
 
-        let encodeABI = new ethers.utils.Interface(SecurityManagerContract.ABI).encodeFunctionData("lock", []);
+        const data = new ethers.utils.Interface(SecurityManagerContract.ABI).encodeFunctionData("lock", []);
         // console.log('encodeABI: ', encodeABI)
-        const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
+        // const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
         // console.log('data: ', data);
         lockOp.callData = new ethers.utils.Interface(executeFromModule)
             .encodeFunctionData("executeFromModule",
@@ -286,9 +286,9 @@ export class BonusWalletLib {
         const nonce = await this.getNonce(walletAddress, etherProvider);
         const unlockOp = new UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
 
-        let encodeABI = new ethers.utils.Interface(SecurityManagerContract.ABI).encodeFunctionData("unlock", []);
+        const data = new ethers.utils.Interface(SecurityManagerContract.ABI).encodeFunctionData("unlock", []);
         // console.log('encodeABI: ', encodeABI)
-        const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
+        // const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
         // console.log('data: ', data);
         unlockOp.callData = new ethers.utils.Interface(executeFromModule)
             .encodeFunctionData("executeFromModule",
@@ -327,9 +327,9 @@ export class BonusWalletLib {
         const nonce = await this.getNonce(walletAddress, etherProvider);
         const addOwnerWithThresholdOp = new UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
 
-        let encodeABI = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("addOwnerWithThreshold", [owner, threshold]);
+        const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("addOwnerWithThreshold", [owner, threshold]);
         // console.log('encodeABI: ', encodeABI)
-        const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
+        // const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
         // console.log('data: ', data);
         addOwnerWithThresholdOp.callData = new ethers.utils.Interface(executeFromModule)
             .encodeFunctionData("executeFromModule",
@@ -370,9 +370,9 @@ export class BonusWalletLib {
         const nonce = await this.getNonce(walletAddress, etherProvider);
         const removeOwnerOp = new UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
 
-        let encodeABI = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("removeOwner", [prevOwner, owner, threshold]);
+        const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("removeOwner", [prevOwner, owner, threshold]);
         // console.log('encodeABI: ', encodeABI)
-        const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
+        // const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
         // console.log('data: ', data);
         removeOwnerOp.callData = new ethers.utils.Interface(executeFromModule)
             .encodeFunctionData("executeFromModule",
@@ -413,9 +413,9 @@ export class BonusWalletLib {
         const nonce = await this.getNonce(walletAddress, etherProvider);
         const swapOwnerOp = new UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
 
-        let encodeABI = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("swapOwner", [prevOwner, oldOwner, newOwner]);
+        const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("swapOwner", [prevOwner, oldOwner, newOwner]);
         // console.log('encodeABI: ', encodeABI)
-        const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
+        // const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
         // console.log('data: ', data);
         swapOwnerOp.callData = new ethers.utils.Interface(executeFromModule)
             .encodeFunctionData("executeFromModule",
@@ -452,9 +452,9 @@ export class BonusWalletLib {
         const nonce = await this.getNonce(walletAddress, etherProvider);
         const changeThresholdOp = new UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
 
-        let encodeABI = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("changeThreshold", [threshold]);
+        const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("changeThreshold", [threshold]);
         // console.log('encodeABI: ', encodeABI)
-        const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
+        // const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
         // console.log('data: ', data);
         changeThresholdOp.callData = new ethers.utils.Interface(executeFromModule)
             .encodeFunctionData("executeFromModule",
@@ -493,9 +493,9 @@ export class BonusWalletLib {
         const nonce = await this.getNonce(walletAddress, etherProvider);
         const withdrawDepositOp = new UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
 
-        let encodeABI = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("withdrawDepositTo", [withdrawAddress, amount]);
+        const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("withdrawDepositTo", [withdrawAddress, amount]);
         // console.log('encodeABI: ', encodeABI)
-        const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
+        // const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
         // console.log('data: ', data);
         withdrawDepositOp.callData = new ethers.utils.Interface(executeFromModule)
             .encodeFunctionData("executeFromModule",
@@ -532,9 +532,9 @@ export class BonusWalletLib {
         const nonce = await this.getNonce(walletAddress, etherProvider);
         const enableModuleOp = new UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
 
-        let encodeABI = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("enableModule", [module]);
+        const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("enableModule", [module]);
         // console.log('encodeABI: ', encodeABI)
-        const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
+        // const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
         // console.log('data: ', data);
         enableModuleOp.callData = new ethers.utils.Interface(executeFromModule)
             .encodeFunctionData("executeFromModule",
@@ -573,9 +573,9 @@ export class BonusWalletLib {
         const nonce = await this.getNonce(walletAddress, etherProvider);
         const disableModuleOp = new UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
 
-        let encodeABI = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("disableModule", [prevModule, module]);
+        const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("disableModule", [prevModule, module]);
         // console.log('encodeABI: ', encodeABI)
-        const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
+        // const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
         // console.log('data: ', data);
         disableModuleOp.callData = new ethers.utils.Interface(executeFromModule)
             .encodeFunctionData("executeFromModule",
@@ -612,9 +612,9 @@ export class BonusWalletLib {
         const nonce = await this.getNonce(walletAddress, etherProvider);
         const setFallbackHandlerOp = new UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
 
-        let encodeABI = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("setFallbackHandler", [handler]);
+        const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("setFallbackHandler", [handler]);
         // console.log('encodeABI: ', encodeABI)
-        const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
+        // const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
         // console.log('data: ', data);
         setFallbackHandlerOp.callData = new ethers.utils.Interface(executeFromModule)
             .encodeFunctionData("executeFromModule",
@@ -653,9 +653,9 @@ export class BonusWalletLib {
         const nonce = await this.getNonce(walletAddress, etherProvider);
         const startSessionOp = new UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
 
-        let encodeABI = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("startSession", [sessionUser, duration]);
+        const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("startSession", [sessionUser, duration]);
         // console.log('encodeABI: ', encodeABI)
-        const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
+        // const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
         // console.log('data: ', data);
         startSessionOp.callData = new ethers.utils.Interface(executeFromModule)
             .encodeFunctionData("executeFromModule",
@@ -690,9 +690,9 @@ export class BonusWalletLib {
         const nonce = await this.getNonce(walletAddress, etherProvider);
         const clearSessionOp = new UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
 
-        let encodeABI = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("clearSession", []);
+        const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("clearSession", []);
         // console.log('encodeABI: ', encodeABI)
-        const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
+        // const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
         // console.log('data: ', data);
         clearSessionOp.callData = new ethers.utils.Interface(executeFromModule)
             .encodeFunctionData("executeFromModule",
