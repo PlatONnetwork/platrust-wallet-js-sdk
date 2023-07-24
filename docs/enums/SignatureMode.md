@@ -1,4 +1,4 @@
-[bonus-wallet-js-sdk](../README.md) / [Exports](../modules.md) / SignatureMode
+[platrust-wallet-js-sdk](../README.md) / [Exports](../modules.md) / SignatureMode
 
 # Enumeration: SignatureMode
 
@@ -20,7 +20,7 @@
 
 #### Defined in
 
-[utils/signatures.ts:12](https://github.com/study-core/bonus-wallet-js-sdk/blob/a32b79e/src/utils/signatures.ts#L12)
+[utils/signatures.ts:12](https://github.com/study-core/bonus-wallet-js-sdk/blob/c53d985/src/utils/signatures.ts#L12)
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 #### Defined in
 
-[utils/signatures.ts:11](https://github.com/study-core/bonus-wallet-js-sdk/blob/a32b79e/src/utils/signatures.ts#L11)
+[utils/signatures.ts:11](https://github.com/study-core/bonus-wallet-js-sdk/blob/c53d985/src/utils/signatures.ts#L11)
 
 ___
 
@@ -40,4 +40,4 @@ ___
 
 #### Defined in
 
-[utils/signatures.ts:13](https://github.com/study-core/bonus-wallet-js-sdk/blob/a32b79e/src/utils/signatures.ts#L13)
+[utils/signatures.ts:13](https://github.com/study-core/bonus-wallet-js-sdk/blob/c53d985/src/utils/signatures.ts#L13)

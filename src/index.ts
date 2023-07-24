@@ -7,7 +7,7 @@
  * @LastEditTime: 2023-04-24 21:05:35
  */
 
-import { BonusWalletLib } from './wallet';
+import { WalletLib } from './wallet';
 import { UserOperation } from "./entities/userOperation";
 import { Result, ValidationResult, StakeInfo, ReturnInfo, FailedOp, ExecutionResult } from './types/result';
 import { UserOperationReceipt, ParsedTransaction, Logs } from './types/userOperationReceipt';
@@ -20,9 +20,9 @@ import { NumberLike } from './utils/numberLike';
 import { signMessage, recoverAddress } from './utils/personalSign';
 
 /**
- * @module Bonuswalletlib
- * @description BonusWalletLib
- * @property {BonusWalletLib} BonusWalletLib bonuswallet lib
+ * @module walletlib
+ * @description WalletLib
+ * @property {WalletLib} WalletLib wallet lib
  * @property {Bundler} Bundler bundler related interface
  * @property {Paymaster} Paymaster paymaster related interface
  * @property {UserOperation} UserOperation user operation
@@ -45,7 +45,7 @@ import { signMessage, recoverAddress } from './utils/personalSign';
  * @property {recoverAddress} Recover address from signature
  */
 export {
-    BonusWalletLib,
+    WalletLib,
     Bundler,
     Paymaster,
     UserOperation,

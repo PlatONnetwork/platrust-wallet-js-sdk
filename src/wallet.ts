@@ -14,7 +14,7 @@ import { WalletProxyContract } from "./contracts/walletProxy";
 import { SecurityManagerContract } from "./contracts/securityManager";
 import { Operation } from "./types/operation";
 
-export class BonusWalletLib {
+export class WalletLib {
 
     /** @private */
     private _singletonFactory;
@@ -29,10 +29,10 @@ export class BonusWalletLib {
 
 
     /**
-     * @constructor BonusWallet
+     * @constructor Wallet
      * @param { String? } singletonFactory the singletonFactory address
-     * @returns { BonusWalletLib }
-     * @memberof BonusWalletLib
+     * @returns { WalletLib }
+     * @memberof WalletLib
      */
     constructor(singletonFactory?: string) {
         singletonFactory = singletonFactory || SingletonFactoryAddress;
@@ -89,7 +89,7 @@ export class BonusWalletLib {
      * @param { String } fallbackHandler 钱包的 fallback 处理合约地址
      * @param { String } lockPeriod 钱包的锁定时长, 单位:(s)
      * @returns { String } setupCode
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      *
      */
     public getSetupCode(
@@ -114,7 +114,7 @@ export class BonusWalletLib {
      * @param { string } initializer initializer data
      * @param { number } salt
      * @return { string } Init code data
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public getInitCode(
         walletFactory: string,
@@ -136,7 +136,7 @@ export class BonusWalletLib {
      *             bytecode: BytesLike | { object: string }
      *         })} [walletProxyConfig] the wallet proxy config
      * @return {string} Wallet code
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public getWalletCode(
         walletLogicAddress: string,
@@ -162,7 +162,7 @@ export class BonusWalletLib {
      * @param { number } salt the salt number,default is 0
      * @param { String } walletFactory the wallet factory contract address
      * @returns { String } the wallet address
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public calculateWalletAddress(
         walletLogic: string,
@@ -197,7 +197,7 @@ export class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The activate userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public activateWalletOp(
         walletLogic: string,
@@ -234,7 +234,7 @@ export class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The lockWallet userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public async lockWalletOp(
         walletAddress: string,
@@ -271,7 +271,7 @@ export class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The unlockWallet userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public async unlockWalletOp(
         walletAddress: string,
@@ -310,7 +310,7 @@ export class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The addOwnerWithThresholdOp userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public async addOwnerWithThresholdOp(
         walletAddress: string,
@@ -352,7 +352,7 @@ export class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The removeOwnerOp userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public async removeOwnerOp(
         walletAddress: string,
@@ -395,7 +395,7 @@ export class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The swapOwnerOp userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public async swapOwnerOp(
         walletAddress: string,
@@ -436,7 +436,7 @@ export class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The changeThresholdOp userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public async changeThresholdOp(
         walletAddress: string,
@@ -476,7 +476,7 @@ export class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The withdrawDepositOp userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public async withdrawDepositOp(
         walletAddress: string,
@@ -516,7 +516,7 @@ export class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The enableModuleOp userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public async enableModuleOp(
         walletAddress: string,
@@ -556,7 +556,7 @@ export class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The disableModuleOp userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public async disableModuleOp(
         walletAddress: string,
@@ -596,7 +596,7 @@ export class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The setFallbackHandlerOp userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public async setFallbackHandlerOp(
         walletAddress: string,
@@ -636,7 +636,7 @@ export class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The startSessionOp userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public async startSessionOp(
         walletAddress: string,
@@ -675,7 +675,7 @@ export class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The clearSessionOp userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public async clearSessionOp(
         walletAddress: string,
@@ -707,7 +707,7 @@ export class BonusWalletLib {
      * @param { String } walletAddress the wallet contract address
      * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
      * @returns { Boolean } True if the module is enabled
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public async isEnabledModule(module: string, walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<boolean> {
         try {
@@ -725,7 +725,7 @@ export class BonusWalletLib {
      * @param { String } walletAddress the wallet contract address
      * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
      * @returns { Boolean } True if an array of modules enabled
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public async isEnabledModules(modules: string[], walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<boolean> {
         try {
@@ -755,7 +755,7 @@ export class BonusWalletLib {
      *     '0x0000000000000000000000000000000000000001'
      * ]
      * ```
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public async getModulesPaginated(start: string, pageSize: number, walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<any[]> {
         try {
@@ -772,7 +772,7 @@ export class BonusWalletLib {
      * @param { String } walletAddress the wallet contract address
      * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
      * @returns { number } Threshold number
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public async getThreshold(walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<number> {
         try {
@@ -789,7 +789,7 @@ export class BonusWalletLib {
      * @param { String } walletAddress the wallet contract address
      * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
      * @returns { Array } Array of wallet owners
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public async getOwners(walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<Array<string>> {
         try {
@@ -807,7 +807,7 @@ export class BonusWalletLib {
      * @param { String } walletAddress the wallet contract address
      * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
      * @returns { Boolean } if owner is an owner of the wallet
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public async isOwner(owner: string, walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<boolean> {
         try {
@@ -824,7 +824,7 @@ export class BonusWalletLib {
      * @param { String } walletAddress the wallet contract address
      * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
      * @returns { String } wallet entryPoint address
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public async getEntryPoint(walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<string> {
         try {
@@ -841,7 +841,7 @@ export class BonusWalletLib {
      * @param { String } walletAddress the wallet contract address
      * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
      * @returns { Boolean } Return true if a wallet is locked
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public async isLocked(walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<boolean> {
         try {
@@ -858,7 +858,7 @@ export class BonusWalletLib {
      * @param { String } walletAddress the wallet contract address
      * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
      * @returns { number } Return the release time of a wallet lock or 0 if the wallet is unlocked
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public async getLock(walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<number> {
         try {
@@ -876,7 +876,7 @@ export class BonusWalletLib {
      * @param {ethers.Wallet} signer the ethers.js wallet of call deposit
      * @param { String } value add deposit value, unit is lat
      * @returns { object } Return deposit transaction receipt
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public async addDeposit(walletAddress: string, signer: ethers.Wallet, value: string): Promise<any> {
         try {
@@ -893,7 +893,7 @@ export class BonusWalletLib {
      * @param { String } walletAddress the wallet contract address
      * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
      * @returns { number } Return Amount of deposit
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public async getDeposit(walletAddress: string, etherProvider: ethers.providers.BaseProvider): Promise<number> {
         try {
@@ -926,7 +926,7 @@ export class BonusWalletLib {
      * @param { String } token token address
      * @param { BigNumber } maxCost token max cost
      * @returns { String } paymasterAndData(hex string)
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public getPaymasterData(payMasterAddress: string, token: string, maxCost: BigNumber) {
         const enc = payMasterAddress.toLowerCase() + defaultAbiCoder.encode(
@@ -943,7 +943,7 @@ export class BonusWalletLib {
     //  * @param { String } walletFactory the wallet factory contract address
     //  * @param {number} salt the salt number
     //  * @returns {String} wallet address
-    //  * @memberof BonusWalletLib
+    //  * @memberof WalletLib
     //  */
     // public calculateWalletAddressByCode(
     //     initContract: Contract,
@@ -980,7 +980,7 @@ export class BonusWalletLib {
      * @param { number } salt the salt number
      * @param { String? } singletonFactory the singleton factory address
      * @returns {String} the wallet address
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     private calculateWalletAddressByCodeHash(
         initCodeHash: string,
@@ -1000,7 +1000,7 @@ export class BonusWalletLib {
      * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
      * @param { String? } defaultBlock "earliest", "latest" and "pending"
      * @returns { number } the next nonce number
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     public async getNonce(walletAddress: string, etherProvider: ethers.providers.BaseProvider, defaultBlock = 'latest'): Promise<number> {
         try {

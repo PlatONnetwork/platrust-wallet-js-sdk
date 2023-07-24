@@ -1,4 +1,4 @@
-[bonus-wallet-js-sdk](../README.md) / [Exports](../modules.md) / Result
+[platrust-wallet-js-sdk](../README.md) / [Exports](../modules.md) / Result
 
 # Interface: Result
 
@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[types/result.ts:44](https://github.com/study-core/bonus-wallet-js-sdk/blob/a32b79e/src/types/result.ts#L44)
+[types/result.ts:44](https://github.com/study-core/bonus-wallet-js-sdk/blob/c53d985/src/types/result.ts#L44)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[types/result.ts:42](https://github.com/study-core/bonus-wallet-js-sdk/blob/a32b79e/src/types/result.ts#L42)
+[types/result.ts:42](https://github.com/study-core/bonus-wallet-js-sdk/blob/c53d985/src/types/result.ts#L42)
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 #### Defined in
 
-[types/result.ts:40](https://github.com/study-core/bonus-wallet-js-sdk/blob/a32b79e/src/types/result.ts#L40)
+[types/result.ts:40](https://github.com/study-core/bonus-wallet-js-sdk/blob/c53d985/src/types/result.ts#L40)

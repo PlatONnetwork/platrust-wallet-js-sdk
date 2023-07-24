@@ -8,9 +8,9 @@
  * @LastEditTime: 2023-04-24 21:05:35
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.recoverAddress = exports.signMessage = exports.Operation = exports.packSignatureHash = exports.decodeSignature = exports.encodeSignature = exports.SignatureMode = exports.UserOperation = exports.Paymaster = exports.Bundler = exports.BonusWalletLib = void 0;
+exports.recoverAddress = exports.signMessage = exports.Operation = exports.packSignatureHash = exports.decodeSignature = exports.encodeSignature = exports.SignatureMode = exports.UserOperation = exports.Paymaster = exports.Bundler = exports.WalletLib = void 0;
 const wallet_1 = require("./wallet");
-Object.defineProperty(exports, "BonusWalletLib", { enumerable: true, get: function () { return wallet_1.BonusWalletLib; } });
+Object.defineProperty(exports, "WalletLib", { enumerable: true, get: function () { return wallet_1.WalletLib; } });
 const userOperation_1 = require("./entities/userOperation");
 Object.defineProperty(exports, "UserOperation", { enumerable: true, get: function () { return userOperation_1.UserOperation; } });
 const operation_1 = require("./types/operation");

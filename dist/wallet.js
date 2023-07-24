@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserOperation = exports.BonusWalletLib = void 0;
+exports.UserOperation = exports.WalletLib = void 0;
 const utils_1 = require("ethers/lib/utils");
 const constants_1 = require("./config/constants");
 const userOperation_1 = require("./entities/userOperation");
@@ -13,8 +13,7 @@ const walletFacroty_1 = require("./contracts/walletFacroty");
 const abi_1 = require("./types/abi");
 const walletProxy_1 = require("./contracts/walletProxy");
 const securityManager_1 = require("./contracts/securityManager");
-const operation_1 = require("./types/operation");
-class BonusWalletLib {
+class WalletLib {
     /** @private */
     // private _deployFactory;
     /**
@@ -22,10 +21,10 @@ class BonusWalletLib {
      */
     // public Utils;
     /**
-     * @constructor BonusWallet
+     * @constructor Wallet
      * @param { String? } singletonFactory the singletonFactory address
-     * @returns { BonusWalletLib }
-     * @memberof BonusWalletLib
+     * @returns { WalletLib }
+     * @memberof WalletLib
      */
     constructor(singletonFactory) {
         this.Bundler = bundle_1.Bundler;
@@ -65,7 +64,7 @@ class BonusWalletLib {
      * @param { String } fallbackHandler 钱包的 fallback 处理合约地址
      * @param { String } lockPeriod 钱包的锁定时长, 单位:(s)
      * @returns { String } setupCode
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      *
      */
     getSetupCode(entryPoint, owners, threshold, to, data, fallbackHandler, lockPeriod) {
@@ -81,7 +80,7 @@ class BonusWalletLib {
      * @param { string } initializer initializer data
      * @param { number } salt
      * @return { string } Init code data
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     getInitCode(walletFactory, walletLogic, initializer, salt) {
         const iface = new ethers_1.ethers.utils.Interface(walletFacroty_1.WalletFactoryContract.ABI);
@@ -93,15 +92,14 @@ class BonusWalletLib {
      * get wallet code
      *
      * @param {string} walletLogicAddress the wallet logic contract address
-     * @param { string } initializer initializer data
      * @param {({
      *             contractInterface: ContractInterface,
      *             bytecode: BytesLike | { object: string }
      *         })} [walletProxyConfig] the wallet proxy config
      * @return {string} Wallet code
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
-    getWalletCode(walletLogicAddress, initializer, walletProxyConfig) {
+    getWalletCode(walletLogicAddress, walletProxyConfig) {
         if (!walletProxyConfig) {
             walletProxyConfig = {
                 contractInterface: walletProxy_1.WalletProxyContract.ABI,
@@ -119,13 +117,13 @@ class BonusWalletLib {
      * @param { number } salt the salt number,default is 0
      * @param { String } walletFactory the wallet factory contract address
      * @returns { String } the wallet address
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     calculateWalletAddress(walletLogic, initializer, salt, walletFactory) {
-        const initCodeWithArgs = this.getWalletCode(walletLogic, initializer);
+        const initCodeWithArgs = this.getWalletCode(walletLogic);
         console.log('initCodeWithArgs: ', initCodeWithArgs);
         const initCodeHash = (0, utils_1.keccak256)(initCodeWithArgs);
-        console.log('initCodeHash: ', initCodeHash);
+        // console.log('initCodeHash: ', initCodeHash)
         // newsalt = keccak256(abi.encodePacked(keccak256(_initializer), _salt));
         // ethers.utils.solidityPack // nodejs equivalent of solidity's abi.encodePacked
         const newSalt = ethers_1.ethers.utils.solidityKeccak256(['bytes', 'bytes32'], [(0, utils_1.keccak256)(initializer), salt]);
@@ -145,7 +143,7 @@ class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The activate userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     activateWalletOp(walletLogic, initializer, paymasterAndData, salt, walletFactory, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas) {
         const walletAddress = this.calculateWalletAddress(walletLogic, initializer, salt, walletFactory);
@@ -164,14 +162,14 @@ class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The lockWallet userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     async lockWalletOp(walletAddress, etherProvider, paymasterAndData, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas) {
         const nonce = await this.getNonce(walletAddress, etherProvider);
         const lockOp = new userOperation_1.UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
-        let encodeABI = new ethers_1.ethers.utils.Interface(securityManager_1.SecurityManagerContract.ABI).encodeFunctionData("lock", []);
+        const data = new ethers_1.ethers.utils.Interface(securityManager_1.SecurityManagerContract.ABI).encodeFunctionData("lock", []);
         // console.log('encodeABI: ', encodeABI)
-        const data = new ethers_1.ethers.utils.Interface(baseWallet_1.BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, operation_1.Operation.CALL]);
+        // const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
         // console.log('data: ', data);
         lockOp.callData = new ethers_1.ethers.utils.Interface(abi_1.executeFromModule)
             .encodeFunctionData("executeFromModule", [data]);
@@ -188,14 +186,14 @@ class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The unlockWallet userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     async unlockWalletOp(walletAddress, etherProvider, paymasterAndData, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas) {
         const nonce = await this.getNonce(walletAddress, etherProvider);
         const unlockOp = new userOperation_1.UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
-        let encodeABI = new ethers_1.ethers.utils.Interface(securityManager_1.SecurityManagerContract.ABI).encodeFunctionData("unlock", []);
+        const data = new ethers_1.ethers.utils.Interface(securityManager_1.SecurityManagerContract.ABI).encodeFunctionData("unlock", []);
         // console.log('encodeABI: ', encodeABI)
-        const data = new ethers_1.ethers.utils.Interface(baseWallet_1.BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, operation_1.Operation.CALL]);
+        // const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
         // console.log('data: ', data);
         unlockOp.callData = new ethers_1.ethers.utils.Interface(abi_1.executeFromModule)
             .encodeFunctionData("executeFromModule", [data]);
@@ -214,14 +212,14 @@ class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The addOwnerWithThresholdOp userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     async addOwnerWithThresholdOp(walletAddress, etherProvider, owner, threshold, paymasterAndData, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas) {
         const nonce = await this.getNonce(walletAddress, etherProvider);
         const addOwnerWithThresholdOp = new userOperation_1.UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
-        let encodeABI = new ethers_1.ethers.utils.Interface(securityManager_1.SecurityManagerContract.ABI).encodeFunctionData("addOwnerWithThreshold", [owner, threshold]);
+        const data = new ethers_1.ethers.utils.Interface(baseWallet_1.BaseWalletContract.ABI).encodeFunctionData("addOwnerWithThreshold", [owner, threshold]);
         // console.log('encodeABI: ', encodeABI)
-        const data = new ethers_1.ethers.utils.Interface(baseWallet_1.BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, operation_1.Operation.CALL]);
+        // const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
         // console.log('data: ', data);
         addOwnerWithThresholdOp.callData = new ethers_1.ethers.utils.Interface(abi_1.executeFromModule)
             .encodeFunctionData("executeFromModule", [data]);
@@ -241,14 +239,14 @@ class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The removeOwnerOp userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     async removeOwnerOp(walletAddress, etherProvider, prevOwner, owner, threshold, paymasterAndData, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas) {
         const nonce = await this.getNonce(walletAddress, etherProvider);
         const removeOwnerOp = new userOperation_1.UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
-        let encodeABI = new ethers_1.ethers.utils.Interface(securityManager_1.SecurityManagerContract.ABI).encodeFunctionData("removeOwner", [prevOwner, owner, threshold]);
+        const data = new ethers_1.ethers.utils.Interface(baseWallet_1.BaseWalletContract.ABI).encodeFunctionData("removeOwner", [prevOwner, owner, threshold]);
         // console.log('encodeABI: ', encodeABI)
-        const data = new ethers_1.ethers.utils.Interface(baseWallet_1.BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, operation_1.Operation.CALL]);
+        // const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
         // console.log('data: ', data);
         removeOwnerOp.callData = new ethers_1.ethers.utils.Interface(abi_1.executeFromModule)
             .encodeFunctionData("executeFromModule", [data]);
@@ -268,14 +266,14 @@ class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The swapOwnerOp userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     async swapOwnerOp(walletAddress, etherProvider, prevOwner, oldOwner, newOwner, paymasterAndData, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas) {
         const nonce = await this.getNonce(walletAddress, etherProvider);
         const swapOwnerOp = new userOperation_1.UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
-        let encodeABI = new ethers_1.ethers.utils.Interface(securityManager_1.SecurityManagerContract.ABI).encodeFunctionData("swapOwner", [prevOwner, oldOwner, newOwner]);
+        const data = new ethers_1.ethers.utils.Interface(baseWallet_1.BaseWalletContract.ABI).encodeFunctionData("swapOwner", [prevOwner, oldOwner, newOwner]);
         // console.log('encodeABI: ', encodeABI)
-        const data = new ethers_1.ethers.utils.Interface(baseWallet_1.BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, operation_1.Operation.CALL]);
+        // const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
         // console.log('data: ', data);
         swapOwnerOp.callData = new ethers_1.ethers.utils.Interface(abi_1.executeFromModule)
             .encodeFunctionData("executeFromModule", [data]);
@@ -293,14 +291,14 @@ class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The changeThresholdOp userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     async changeThresholdOp(walletAddress, etherProvider, threshold, paymasterAndData, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas) {
         const nonce = await this.getNonce(walletAddress, etherProvider);
         const changeThresholdOp = new userOperation_1.UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
-        let encodeABI = new ethers_1.ethers.utils.Interface(securityManager_1.SecurityManagerContract.ABI).encodeFunctionData("changeThreshold", [threshold]);
+        const data = new ethers_1.ethers.utils.Interface(baseWallet_1.BaseWalletContract.ABI).encodeFunctionData("changeThreshold", [threshold]);
         // console.log('encodeABI: ', encodeABI)
-        const data = new ethers_1.ethers.utils.Interface(baseWallet_1.BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, operation_1.Operation.CALL]);
+        // const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
         // console.log('data: ', data);
         changeThresholdOp.callData = new ethers_1.ethers.utils.Interface(abi_1.executeFromModule)
             .encodeFunctionData("executeFromModule", [data]);
@@ -319,14 +317,14 @@ class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The withdrawDepositOp userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     async withdrawDepositOp(walletAddress, etherProvider, withdrawAddress, amount, paymasterAndData, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas) {
         const nonce = await this.getNonce(walletAddress, etherProvider);
         const withdrawDepositOp = new userOperation_1.UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
-        let encodeABI = new ethers_1.ethers.utils.Interface(securityManager_1.SecurityManagerContract.ABI).encodeFunctionData("withdrawDepositTo", [withdrawAddress, amount]);
+        const data = new ethers_1.ethers.utils.Interface(baseWallet_1.BaseWalletContract.ABI).encodeFunctionData("withdrawDepositTo", [withdrawAddress, amount]);
         // console.log('encodeABI: ', encodeABI)
-        const data = new ethers_1.ethers.utils.Interface(baseWallet_1.BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, operation_1.Operation.CALL]);
+        // const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
         // console.log('data: ', data);
         withdrawDepositOp.callData = new ethers_1.ethers.utils.Interface(abi_1.executeFromModule)
             .encodeFunctionData("executeFromModule", [data]);
@@ -344,14 +342,14 @@ class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The enableModuleOp userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     async enableModuleOp(walletAddress, etherProvider, module, paymasterAndData, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas) {
         const nonce = await this.getNonce(walletAddress, etherProvider);
         const enableModuleOp = new userOperation_1.UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
-        let encodeABI = new ethers_1.ethers.utils.Interface(securityManager_1.SecurityManagerContract.ABI).encodeFunctionData("enableModule", [module]);
+        const data = new ethers_1.ethers.utils.Interface(baseWallet_1.BaseWalletContract.ABI).encodeFunctionData("enableModule", [module]);
         // console.log('encodeABI: ', encodeABI)
-        const data = new ethers_1.ethers.utils.Interface(baseWallet_1.BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, operation_1.Operation.CALL]);
+        // const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
         // console.log('data: ', data);
         enableModuleOp.callData = new ethers_1.ethers.utils.Interface(abi_1.executeFromModule)
             .encodeFunctionData("executeFromModule", [data]);
@@ -370,14 +368,14 @@ class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The disableModuleOp userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     async disableModuleOp(walletAddress, etherProvider, prevModule, module, paymasterAndData, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas) {
         const nonce = await this.getNonce(walletAddress, etherProvider);
         const disableModuleOp = new userOperation_1.UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
-        let encodeABI = new ethers_1.ethers.utils.Interface(securityManager_1.SecurityManagerContract.ABI).encodeFunctionData("disableModule", [prevModule, module]);
+        const data = new ethers_1.ethers.utils.Interface(baseWallet_1.BaseWalletContract.ABI).encodeFunctionData("disableModule", [prevModule, module]);
         // console.log('encodeABI: ', encodeABI)
-        const data = new ethers_1.ethers.utils.Interface(baseWallet_1.BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, operation_1.Operation.CALL]);
+        // const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
         // console.log('data: ', data);
         disableModuleOp.callData = new ethers_1.ethers.utils.Interface(abi_1.executeFromModule)
             .encodeFunctionData("executeFromModule", [data]);
@@ -395,14 +393,14 @@ class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The setFallbackHandlerOp userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     async setFallbackHandlerOp(walletAddress, etherProvider, handler, paymasterAndData, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas) {
         const nonce = await this.getNonce(walletAddress, etherProvider);
         const setFallbackHandlerOp = new userOperation_1.UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
-        let encodeABI = new ethers_1.ethers.utils.Interface(securityManager_1.SecurityManagerContract.ABI).encodeFunctionData("setFallbackHandler", [handler]);
+        const data = new ethers_1.ethers.utils.Interface(baseWallet_1.BaseWalletContract.ABI).encodeFunctionData("setFallbackHandler", [handler]);
         // console.log('encodeABI: ', encodeABI)
-        const data = new ethers_1.ethers.utils.Interface(baseWallet_1.BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, operation_1.Operation.CALL]);
+        // const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
         // console.log('data: ', data);
         setFallbackHandlerOp.callData = new ethers_1.ethers.utils.Interface(abi_1.executeFromModule)
             .encodeFunctionData("executeFromModule", [data]);
@@ -421,14 +419,14 @@ class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The startSessionOp userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     async startSessionOp(walletAddress, etherProvider, sessionUser, duration, paymasterAndData, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas) {
         const nonce = await this.getNonce(walletAddress, etherProvider);
         const startSessionOp = new userOperation_1.UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
-        let encodeABI = new ethers_1.ethers.utils.Interface(securityManager_1.SecurityManagerContract.ABI).encodeFunctionData("startSession", [sessionUser, duration]);
+        const data = new ethers_1.ethers.utils.Interface(baseWallet_1.BaseWalletContract.ABI).encodeFunctionData("startSession", [sessionUser, duration]);
         // console.log('encodeABI: ', encodeABI)
-        const data = new ethers_1.ethers.utils.Interface(baseWallet_1.BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, operation_1.Operation.CALL]);
+        // const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
         // console.log('data: ', data);
         startSessionOp.callData = new ethers_1.ethers.utils.Interface(abi_1.executeFromModule)
             .encodeFunctionData("executeFromModule", [data]);
@@ -445,14 +443,14 @@ class BonusWalletLib {
      * @param { NumberLike } verificationGasLimit verification gas limit
      * @param { NumberLike } preVerificationGas preVerification gas
      * @returns { UserOperation } The clearSessionOp userOperation
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     async clearSessionOp(walletAddress, etherProvider, paymasterAndData, maxFeePerGas, maxPriorityFeePerGas, callGasLimit, verificationGasLimit, preVerificationGas) {
         const nonce = await this.getNonce(walletAddress, etherProvider);
         const clearSessionOp = new userOperation_1.UserOperation(walletAddress, nonce, '0x', '0x', callGasLimit, maxFeePerGas, maxPriorityFeePerGas, paymasterAndData, verificationGasLimit, preVerificationGas, '0x');
-        let encodeABI = new ethers_1.ethers.utils.Interface(securityManager_1.SecurityManagerContract.ABI).encodeFunctionData("clearSession", []);
+        const data = new ethers_1.ethers.utils.Interface(baseWallet_1.BaseWalletContract.ABI).encodeFunctionData("clearSession", []);
         // console.log('encodeABI: ', encodeABI)
-        const data = new ethers_1.ethers.utils.Interface(baseWallet_1.BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, operation_1.Operation.CALL]);
+        // const data = new ethers.utils.Interface(BaseWalletContract.ABI).encodeFunctionData("execute", [walletAddress, 0, encodeABI, Operation.CALL]);
         // console.log('data: ', data);
         clearSessionOp.callData = new ethers_1.ethers.utils.Interface(abi_1.executeFromModule)
             .encodeFunctionData("executeFromModule", [data]);
@@ -464,7 +462,7 @@ class BonusWalletLib {
      * @param { String } walletAddress the wallet contract address
      * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
      * @returns { Boolean } True if the module is enabled
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     async isEnabledModule(module, walletAddress, etherProvider) {
         try {
@@ -482,7 +480,7 @@ class BonusWalletLib {
      * @param { String } walletAddress the wallet contract address
      * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
      * @returns { Boolean } True if an array of modules enabled
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     async isEnabledModules(modules, walletAddress, etherProvider) {
         try {
@@ -500,8 +498,19 @@ class BonusWalletLib {
      * @param { number } pageSize Maximum number of modules that should be returned. Has to be > 0
      * @param { String } walletAddress the wallet contract address
      * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
-     * @returns { Array } array Array of modules
-     * @memberof BonusWalletLib
+     * @returns { Array<any> } Returns an array object with a length of 2, the first element is the modules array, and the second element is the starting point of the next page
+     *
+     * @examples:
+     * ```
+     * [
+     *   [
+     *     '0x3C4e46647aDBca88D6224fD0b9CD94cfB2F053F3',
+     *     '0x0A531888Fd14243aB544a41fAd8f2C7E3Fd21D94'
+     *     ],
+     *     '0x0000000000000000000000000000000000000001'
+     * ]
+     * ```
+     * @memberof WalletLib
      */
     async getModulesPaginated(start, pageSize, walletAddress, etherProvider) {
         try {
@@ -518,7 +527,7 @@ class BonusWalletLib {
      * @param { String } walletAddress the wallet contract address
      * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
      * @returns { number } Threshold number
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     async getThreshold(walletAddress, etherProvider) {
         try {
@@ -535,7 +544,7 @@ class BonusWalletLib {
      * @param { String } walletAddress the wallet contract address
      * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
      * @returns { Array } Array of wallet owners
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     async getOwners(walletAddress, etherProvider) {
         try {
@@ -553,7 +562,7 @@ class BonusWalletLib {
      * @param { String } walletAddress the wallet contract address
      * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
      * @returns { Boolean } if owner is an owner of the wallet
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     async isOwner(owner, walletAddress, etherProvider) {
         try {
@@ -570,7 +579,7 @@ class BonusWalletLib {
      * @param { String } walletAddress the wallet contract address
      * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
      * @returns { String } wallet entryPoint address
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     async getEntryPoint(walletAddress, etherProvider) {
         try {
@@ -587,7 +596,7 @@ class BonusWalletLib {
      * @param { String } walletAddress the wallet contract address
      * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
      * @returns { Boolean } Return true if a wallet is locked
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     async isLocked(walletAddress, etherProvider) {
         try {
@@ -604,7 +613,7 @@ class BonusWalletLib {
      * @param { String } walletAddress the wallet contract address
      * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
      * @returns { number } Return the release time of a wallet lock or 0 if the wallet is unlocked
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     async getLock(walletAddress, etherProvider) {
         try {
@@ -622,7 +631,7 @@ class BonusWalletLib {
      * @param {ethers.Wallet} signer the ethers.js wallet of call deposit
      * @param { String } value add deposit value, unit is lat
      * @returns { object } Return deposit transaction receipt
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     async addDeposit(walletAddress, signer, value) {
         try {
@@ -639,7 +648,7 @@ class BonusWalletLib {
      * @param { String } walletAddress the wallet contract address
      * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
      * @returns { number } Return Amount of deposit
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     async getDeposit(walletAddress, etherProvider) {
         try {
@@ -666,26 +675,37 @@ class BonusWalletLib {
      * @param { String } token token address
      * @param { BigNumber } maxCost token max cost
      * @returns { String } paymasterAndData(hex string)
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     getPaymasterData(payMasterAddress, token, maxCost) {
         const enc = payMasterAddress.toLowerCase() + utils_1.defaultAbiCoder.encode(['address', 'uint256'], [token, maxCost]).substring(2);
         return enc;
     }
-    /**
-     * calculate wallet address
-     * @param {IContract} initContract the init Contract
-     * @param {any[] | undefined} initArgs the init args
-     * @param {number} salt the salt number
-     * @returns {String} wallet address
-     * @memberof BonusWalletLib
-     */
-    calculateWalletAddressByCode(initContract, initArgs, salt) {
-        const factory = new ethers_1.ethers.ContractFactory(initContract.ABI, initContract.bytecode);
-        const initCodeWithArgs = factory.getDeployTransaction(initArgs).data;
-        const initCodeHash = (0, utils_1.keccak256)(initCodeWithArgs);
-        return this.calculateWalletAddressByCodeHash(initCodeHash, salt);
-    }
+    // /**
+    //  * calculate wallet address
+    //  * @param {IContract} initContract the init Contract(walletProxy contract)
+    //  * @param {any[] | undefined} initArgs the init args(walletProxy contract init args, is wallet logic address)
+    //  * @param { String } initializer  wallet setup code
+    //  * @param { String } walletFactory the wallet factory contract address
+    //  * @param {number} salt the salt number
+    //  * @returns {String} wallet address
+    //  * @memberof WalletLib
+    //  */
+    // public calculateWalletAddressByCode(
+    //     initContract: Contract,
+    //     initArgs: any | undefined,
+    //     initializer: string,
+    //     walletFactory: string,
+    //     salt: string): string {
+    //     const factory = new ethers.ContractFactory(initContract.ABI, initContract.bytecode);
+    //     const initCodeWithArgs = factory.getDeployTransaction(initArgs).data as string;
+    //     const initCodeHash = keccak256(initCodeWithArgs);
+    //     const newSalt = ethers.utils.solidityKeccak256(
+    //         ['bytes', 'bytes32'],
+    //         [keccak256(initializer), salt]
+    //     )
+    //     return this.calculateWalletAddressByCodeHash(initCodeHash, newSalt, walletFactory);
+    // }
     /**
      * convert number to bytes32
      * @param {number?} num the number
@@ -703,7 +723,7 @@ class BonusWalletLib {
      * @param { number } salt the salt number
      * @param { String? } singletonFactory the singleton factory address
      * @returns {String} the wallet address
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     calculateWalletAddressByCodeHash(initCodeHash, salt, singletonFactory) {
         return (0, utils_1.getCreate2Address)(singletonFactory || this._singletonFactory, salt, initCodeHash);
@@ -714,7 +734,7 @@ class BonusWalletLib {
      * @param { ethers.providers.BaseProvider } etherProvider the ethers.js provider e.g. ethers.provider
      * @param { String? } defaultBlock "earliest", "latest" and "pending"
      * @returns { number } the next nonce number
-     * @memberof BonusWalletLib
+     * @memberof WalletLib
      */
     async getNonce(walletAddress, etherProvider, defaultBlock = 'latest') {
         try {
@@ -737,11 +757,11 @@ class BonusWalletLib {
         }
     }
 }
-exports.BonusWalletLib = BonusWalletLib;
+exports.WalletLib = WalletLib;
 /**
  *
  */
-BonusWalletLib.Defines = {
+WalletLib.Defines = {
     AddressZero: constants_1.AddressZero,
     SingletonFactoryAddress: constants_1.SingletonFactoryAddress,
     bytes32_zero: constants_1.bytes32_zero

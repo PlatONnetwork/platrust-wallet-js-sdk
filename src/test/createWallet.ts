@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 import { SignatureMode } from "../utils/signatures";
 import { AddressZero } from "../config/constants";
 import {
-    BonusWalletLib,
+    WalletLib,
     packSignatureHash,
     signMessage,
     encodeSignature,
@@ -17,14 +17,14 @@ async function main() {
     const chainURL = 'http://192.168.21.119:8801'
     const bundleURL = 'http://192.168.21.119:9901'
 
-    const bonusWalletLib = new BonusWalletLib();
+    const walletLib = new WalletLib();
     const walletLogic = '0x7426C8f418de1EAf202956C8106B375b2B4ad088'
     const walletFactory = '0x607A33F156377BF4C27b799CA1B524F24EacE297' // wallet proxy factory contract address
     const relayerManagerAddr = '0x82c687F650994797c080C5038E2957fa03D38B4C'
     const salt = '0x46a31f1f917570aa8a60b2339f1a0469cbce2feb53c705746446981548845b3b'
     console.log("relayer: ", relayerManagerAddr);
 
-    const initializer = await bonusWalletLib.getSetupCode(
+    const initializer = await walletLib.getSetupCode(
         relayerManagerAddr,   // <address> EntryPoint Contract Address
         owners, // <[address]> owner Address List
         2,       // <number> threshold
@@ -33,7 +33,7 @@ async function main() {
         AddressZero,  // <string> fallbackHandler
         86400,      // <number> lockPerid
     )
-    const walletAddress = await bonusWalletLib.calculateWalletAddress(
+    const walletAddress = await walletLib.calculateWalletAddress(
         walletLogic,  // <address> BonusWalletLogic Contract Address
         initializer,  // <string> initializer
         salt,     // <string> salt (Hex string)
@@ -43,9 +43,9 @@ async function main() {
     console.log("wallet: ", walletAddress);
     console.log("factory: ", walletFactory);
     console.log("wallet logic: ", walletLogic);
-    const initcode = bonusWalletLib.getInitCode(walletFactory, walletLogic, initializer, salt)
+    const initcode = walletLib.getInitCode(walletFactory, walletLogic, initializer, salt)
     console.log("init code: ", initcode)
-    const activateOp = bonusWalletLib.activateWalletOp(
+    const activateOp = walletLib.activateWalletOp(
         walletLogic,  // <address> BonusWallet Logic Contract Address
         initializer,  // <string> initializer
         undefined,   // <bytes> paymasterAndData
@@ -80,7 +80,7 @@ async function main() {
     console.log("signature: ", activateOp.signature);
     // console.log('activateOp: ', activateOp.toJSON())
 
-    const bundler = new bonusWalletLib.Bundler(
+    const bundler = new walletLib.Bundler(
         relayerManagerAddr,  // <address> EntryPoint Contract Address
         new ethers.providers.JsonRpcProvider(chainURL),
         bundleURL

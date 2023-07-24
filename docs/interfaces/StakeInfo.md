@@ -1,4 +1,4 @@
-[bonus-wallet-js-sdk](../README.md) / [Exports](../modules.md) / StakeInfo
+[platrust-wallet-js-sdk](../README.md) / [Exports](../modules.md) / StakeInfo
 
 # Interface: StakeInfo
 
@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[types/result.ts:28](https://github.com/study-core/bonus-wallet-js-sdk/blob/a32b79e/src/types/result.ts#L28)
+[types/result.ts:28](https://github.com/study-core/bonus-wallet-js-sdk/blob/c53d985/src/types/result.ts#L28)
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 #### Defined in
 
-[types/result.ts:29](https://github.com/study-core/bonus-wallet-js-sdk/blob/a32b79e/src/types/result.ts#L29)
+[types/result.ts:29](https://github.com/study-core/bonus-wallet-js-sdk/blob/c53d985/src/types/result.ts#L29)

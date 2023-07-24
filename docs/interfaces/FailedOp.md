@@ -1,4 +1,4 @@
-[bonus-wallet-js-sdk](../README.md) / [Exports](../modules.md) / FailedOp
+[platrust-wallet-js-sdk](../README.md) / [Exports](../modules.md) / FailedOp
 
 # Interface: FailedOp
 
@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[types/result.ts:14](https://github.com/study-core/bonus-wallet-js-sdk/blob/a32b79e/src/types/result.ts#L14)
+[types/result.ts:14](https://github.com/study-core/bonus-wallet-js-sdk/blob/c53d985/src/types/result.ts#L14)
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 #### Defined in
 
-[types/result.ts:15](https://github.com/study-core/bonus-wallet-js-sdk/blob/a32b79e/src/types/result.ts#L15)
+[types/result.ts:15](https://github.com/study-core/bonus-wallet-js-sdk/blob/c53d985/src/types/result.ts#L15)

@@ -1,15 +1,15 @@
-bonus-wallet-js-sdk / [Exports](modules.md)
+platrust-wallet-js-sdk / [Exports](modules.md)
 
 <h1 align="center">
    <b>
-        bonus-wallet-js-sdk
+        platrust-wallet-js-sdk
     </b>
 </h1>
 
-<p align="center">The interaction library for BonusWallet</p>
+<p align="center">The interaction library for platrust Wallet</p>
 
 <p align="center">
-    <a href="https://github.com/study-core/bonus-wallet-contracts/"><b>Compatible Contracts</b></a> •
+    <a href="https://github.com/PlatONnetwork/platrust-wallet-contracts/"><b>Compatible Contracts</b></a> •
     <a href="docs/modules.md"><b>Documentation</b></a>
 </p>
 
@@ -46,25 +46,25 @@ bonus-wallet-js-sdk / [Exports](modules.md)
 Using npm:
 
 ```bash
-$ npm install git+https://github.com/study-core/bonus-wallet-js-sdk.git#v0.1.0
+$ npm install git+https://github.com/PlatONnetwork/platrust-wallet-js-sdk.git#v0.1.0
 ```
 
 Using yarn:
 
 ```bash
-$ yarn add git+https://github.com/study-core/bonus-wallet-js-sdk.git#v0.1.0
+$ yarn add git+https://github.com/PlatONnetwork/platrust-wallet-js-sdk.git#v0.1.0
 ```
 
 Using pnpm:
 
 ```bash
-$ pnpm add git+https://github.com/study-core/bonus-wallet-js-sdk.git#v0.1.0
+$ pnpm add git+https://github.com/PlatONnetwork/platrust-wallet-js-sdk.git#v0.1.0
 ```
 
 Once the package is installed, you can import the library using `import` approach:
 
 ```bash
-import { ApproveToken, ParsedTransaction, BonusWalletLib, UserOperation } from 'bonus-wallet-js-sdk';
+import { ApproveToken, ParsedTransaction, walletLib, UserOperation } from 'platrust-wallet-js-sdk';
 ```
 
 ## Example
@@ -72,13 +72,13 @@ import { ApproveToken, ParsedTransaction, BonusWalletLib, UserOperation } from '
 ```typescript
 import { ethers } from "ethers";
 import { Accounts } from "web3-eth-accounts";
-import { UserOpReceipt, BaseWalletLib, UserOperation, packSignatureHash, signMessage, encodeSignature } from 'bonus-wallet-js-sdk';
+import { UserOpReceipt, walletLib, UserOperation, packSignatureHash, signMessage, encodeSignature } from 'platrust-wallet-js-sdk';
 
 async function main() {
     const pks = ['0xa5748918ff73de2e3f6cde786a1567640349eefff2503de82b0bfa4d41d55101']
     let owners = ['0x2E64cAbc8586CE95B5744DDE91Bc92182CbbD813']
 
-    const bonusWalletLib = new BonusWalletLib();
+    const walletLib = new walletLib();
     const walletLogic = '0x2e234DAe75C793f67A35089C9d99245E1C58470b'
     const walletFactory = '0xF62849F9A0B5Bf2913b396098F7c7019b51A820a' // wallet proxy factory contract address
     const relayerManagerAddr = '0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f'
@@ -86,7 +86,7 @@ async function main() {
     const salt = '0x4aa639acfa86f7d60530bf462efdfdd9f4c4a6526226f5284c0af71240d47f25'
     console.log("relayer: ", relayerManagerAddr);
 
-    const initializer = await bonusWalletLib.getSetupCode(
+    const initializer = await walletLib.getSetupCode(
         relayerManagerAddr,   // <address> EntryPoint Contract Address
         owners, // <[address]> owner Address List
         1,       // <number> threshold
@@ -95,8 +95,8 @@ async function main() {
         AddressZero,  // <string> fallbackHandler
         86400,      // <number> lockPerid
     )
-    const walletAddress = await bonusWalletLib.calculateWalletAddress(
-        walletLogic,  // <address> BonusWalletLogic Contract Address
+    const walletAddress = await walletLib.calculateWalletAddress(
+        walletLogic,  // <address> walletLogic Contract Address
         initializer,  // <string> initializer
         salt,     // <string> salt (Hex string)
         walletFactory  // <address> wallet Factory Address
@@ -105,10 +105,10 @@ async function main() {
     // console.log("wallet: ", walletAddress);
     // console.log("factory: ", walletFactory);
     // console.log("wallet logic: ", walletLogic);
-    const initcode = bonusWalletLib.getInitCode(walletFactory, walletLogic, initializer, salt)
+    const initcode = walletLib.getInitCode(walletFactory, walletLogic, initializer, salt)
     console.log("init code: ", initcode)
-    const activateOp = bonusWalletLib.activateWalletOp(
-        walletLogic,  // <address> BonusWallet Logic Contract Address
+    const activateOp = walletLib.activateWalletOp(
+        walletLogic,  // <address> wallet Logic Contract Address
         initializer,  // <string> initializer
         undefined,   // <bytes> paymasterAndData
         salt,     // <string> salt (Hex string)

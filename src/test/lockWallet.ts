@@ -1,4 +1,4 @@
-import { BonusWalletLib}  from "../wallet";
+import { WalletLib}  from "../wallet";
 import {
     encodeSignature,
     packSignatureHash,
@@ -19,9 +19,9 @@ async function main() {
 
     const wallet = '0x4F43CfcAE68DfD073dEdd628a0534B8c32c7D6B3';
     const relayerManagerAddr = '0x82c687F650994797c080C5038E2957fa03D38B4C'
-    const bonusWalletLib = new BonusWalletLib();
+    const walletLib = new WalletLib();
 
-    const lockOp = await bonusWalletLib.lockWalletOp(wallet, provider, '0x', 100, 1000, 70000, 50000, 60000);
+    const lockOp = await walletLib.lockWalletOp(wallet, provider, '0x', 100, 1000, 70000, 50000, 60000);
     console.log('callData: ', lockOp.callData);
     const userOpHash = await lockOp.getUserOpHashFromContract(
         relayerManagerAddr,  // <address> EntryPoint Contract Address
@@ -43,7 +43,7 @@ async function main() {
     lockOp.signature = encodeSignature(SignatureMode.owner, sigs, 0, 0);
     console.log('lockOp signature: ', lockOp.signature);
 
-    const bundler = new bonusWalletLib.Bundler(
+    const bundler = new walletLib.Bundler(
         relayerManagerAddr,  // <address> EntryPoint Contract Address
         provider,
         bundleURL

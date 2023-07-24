@@ -106,12 +106,6 @@ export declare class UserOperation {
      */
     static fromObject(obj: any): UserOperation;
     /**
-     * @description get the paymaster sign hash
-     * @returns { string } the paymaster sign hash
-     * @memberof UserOperation
-     */
-    payMasterSignHash(): string;
-    /**
      *
      *
      * @param { string } signature
@@ -123,14 +117,6 @@ export declare class UserOperation {
     signWithSignature(signature: string, signatureMode?: SignatureMode, validAfter?: number, validUntil?: number): void;
     private encode;
     packUserOp(forSignature?: boolean): string;
-    /**
-     * @description get the UserOpHash (userOp hash)
-     * @param { string } entryPointAddress the entry point address
-     * @param { number } chainId the chain id
-     * @returns { string } the UserOpHash (userOp hash)
-     * @memberof UserOperation
-     */
-    getUserOpHash(entryPointAddress: string, chainId: number): string;
     /**
      * @description get the UserOpHash (userOp hash)
      * @param { string } entryPointAddress the entry point address

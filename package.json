@@ -1,8 +1,8 @@
 {
-  "name": "bonus-wallet-js-sdk",
-  "version": "v0.1.0",
-  "description": "The EIP-4337 library for Bonus-Wallet",
-  "main": "dist/app.js",
+  "name": "platrust-wallet-js-sdk",
+  "version": "v1.0.1",
+  "description": "The EIP-4337 library for platrust-Wallet",
+  "main": "dist/index.js",
   "scripts": {
     "start": "ts-node src/app.ts",
     "build": "rm -rf dist && tsc --project tsconfig.json",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/study-core/bonus-wallet-js-sdk.git"
+    "url": "git+https://github.com/PlatONnetwork/platrust-wallet-js-sdk.git"
   },
   "keywords": [
     "AA",
@@ -19,12 +19,12 @@
     "contract",
     "EIP4337"
   ],
-  "author": "soul",
+  "author": "steven",
   "license": "MPL-2.0",
   "bugs": {
-    "url": "https://github.com/study-core/bonus-wallet-js-sdk/issues"
+    "url": "https://github.com/PlatONnetwork/platrust-wallet-js-sdk/issues"
   },
-  "homepage": "https://github.com/study-core/bonus-wallet-js-sdk",
+  "homepage": "https://github.com/PlatONnetwork/platrust-wallet-js-sdk",
   "devDependencies": {
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.14.1",

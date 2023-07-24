@@ -1,4 +1,4 @@
-import { BonusWalletLib}  from "../wallet";
+import { WalletLib}  from "../wallet";
 import { ethers } from "ethers";
 
 async function main() {
@@ -9,9 +9,9 @@ async function main() {
     const paymasterAddr = '0x031e3E8Dcf524710A133d27E02Dc2a04F25eE780';
     const USDTTokenAddr = '0xA31B732A6272E7F1aCdf172f56B2188A777eFd0A';
     const oracle = '0x20402Fc336028F43f278668B71aC2B7Bc1d76bc6';
-    const bonusWalletLib = new BonusWalletLib();
+    const walletLib = new WalletLib();
 
-    const paymaster = new bonusWalletLib.Paymaster(
+    const paymaster = new walletLib.Paymaster(
         paymasterAddr,  // <address> EntryPoint Contract Address
         wallet
     );

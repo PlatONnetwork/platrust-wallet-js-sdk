@@ -1,4 +1,4 @@
-[bonus-wallet-js-sdk](../README.md) / [Exports](../modules.md) / Operation
+[platrust-wallet-js-sdk](../README.md) / [Exports](../modules.md) / Operation
 
 # Enumeration: Operation
 
@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[types/operation.ts:2](https://github.com/study-core/bonus-wallet-js-sdk/blob/a32b79e/src/types/operation.ts#L2)
+[types/operation.ts:2](https://github.com/study-core/bonus-wallet-js-sdk/blob/c53d985/src/types/operation.ts#L2)
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 #### Defined in
 
-[types/operation.ts:3](https://github.com/study-core/bonus-wallet-js-sdk/blob/a32b79e/src/types/operation.ts#L3)
+[types/operation.ts:3](https://github.com/study-core/bonus-wallet-js-sdk/blob/c53d985/src/types/operation.ts#L3)

@@ -1,4 +1,4 @@
-[bonus-wallet-js-sdk](../README.md) / [Exports](../modules.md) / ApproveToken
+[platrust-wallet-js-sdk](../README.md) / [Exports](../modules.md) / ApproveToken
 
 # Interface: ApproveToken
 
@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[types/approveToken.ts:3](https://github.com/study-core/bonus-wallet-js-sdk/blob/a32b79e/src/types/approveToken.ts#L3)
+[types/approveToken.ts:3](https://github.com/study-core/bonus-wallet-js-sdk/blob/c53d985/src/types/approveToken.ts#L3)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[types/approveToken.ts:2](https://github.com/study-core/bonus-wallet-js-sdk/blob/a32b79e/src/types/approveToken.ts#L2)
+[types/approveToken.ts:2](https://github.com/study-core/bonus-wallet-js-sdk/blob/c53d985/src/types/approveToken.ts#L2)
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 #### Defined in
 
-[types/approveToken.ts:4](https://github.com/study-core/bonus-wallet-js-sdk/blob/a32b79e/src/types/approveToken.ts#L4)
+[types/approveToken.ts:4](https://github.com/study-core/bonus-wallet-js-sdk/blob/c53d985/src/types/approveToken.ts#L4)
